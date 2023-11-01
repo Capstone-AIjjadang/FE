@@ -1,0 +1,88 @@
+.camera_container {
+    background-color: white;
+    width: 60vw;
+    height: 100vh;
+
+}
+
+/* display: flex;
+    justify-content: center;
+    align-items: center; */
+
+.screen_container {
+    height: 80%;
+    border-bottom: 3px solid #6C95EC;
+    border-end-start-radius: 20px;
+    border-end-end-radius: 20px;
+}
+
+.screen {
+    width: 30vw;
+    height: 63vh;
+    margin-left: 26%;
+}
+
+.food_name {
+    width: 20vw;
+    border: 2px solid #6C95EC;
+    border-radius: 21px;
+    margin-left: 33%;
+    display: flex;
+    justify-content: center;
+}
+
+.btns {
+    display: flex;
+    align-items: center;
+}
+
+.btn_gallary {
+    border: none;
+    background: none;
+    outline: none;
+    padding: 0;
+    height: 64px;
+    width: 64px;
+    margin-left: 93px;
+}
+
+.btn_photo {
+    border: 0;
+    background-color: #3A4750;
+    height: 64px;
+    width: 64px;
+    border-radius: 50%;
+    margin-left: 266px;
+}
+
+.toggle-button {
+    margin-left: 166px;
+    width: 60px;
+    height: 30px;
+    border: 2px solid #6C95EC;
+    border-radius: 20px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    /* 트랜지션을 추가합니다. */
+}
+
+.toggle-button::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background-color: #6C95EC;
+    border-radius: 50%;
+    left: 2%;
+    transition: transform 0.3s;
+}
+
+.toggle-button.ingredient::before {
+    transform: translateX(30px);
+    background-color: #ffffff;
+}
+
+.toggle-button.ingredient {
+    background-color: #6C95EC;
+}
