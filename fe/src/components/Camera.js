@@ -1,6 +1,5 @@
 import React from 'react';
-import '../Module.css/Camera.Module.css'
-import btn_gallary from '../styles/btn_gallary.png';
+import '../css/Camera.css';
 import { useState } from 'react';
 import Webcam from "react-webcam";
 // npm install react-webcam
@@ -77,7 +76,7 @@ const Camera = () => {
                     />
                     <button className='btn_gallary'
                         onClick={handleButtonClick}>
-                        <img src={btn_gallary} className='btn_gallary' />
+                        <img src={process.env.PUBLIC_URL + "/imgs/btn_gallary.png"} className='btn_gallary' />
                     </button>
 
                     <button type="button" className='btn_photo' onClick={capturedImage ? resetImage : captureImage}>
