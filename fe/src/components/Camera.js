@@ -1,5 +1,5 @@
 import React from 'react';
-import '../Module.css/Camera.Module.css'
+import '../Module.css/Camera.module.css';
 import btn_gallary from '../styles/btn_gallary.png';
 import { useState } from 'react';
 import Webcam from "react-webcam";
