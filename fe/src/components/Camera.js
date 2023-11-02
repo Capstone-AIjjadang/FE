@@ -1,12 +1,8 @@
 import React from 'react';
-<<<<<<< HEAD
 import '../css/Camera.css';
-=======
-import '../Module.css/Camera.module.css';
-import btn_gallary from '../styles/btn_gallary.png';
->>>>>>> Develop
 import { useState } from 'react';
 import Webcam from "react-webcam";
+import { Link } from 'react-router-dom';
 // npm install react-webcam
 
 const Camera = () => {
@@ -20,9 +16,7 @@ const Camera = () => {
         e.preventDefault();
         fileInput.current.click();
     };
-    const handleChange = e => {
-        fileInput.current.click();
-    };
+
     const handleImageSelect = (e) => {
         const selectedImage = e.target.files[0];
         if (selectedImage) {
@@ -48,9 +42,9 @@ const Camera = () => {
         setIsActive(!isActive);
     };
 
-
     return (
         <div className='camera_container'>
+            <Link to="/" className='GotoHome' />
             <div className='screen_container'>
                 {capturedImage ? (
                     <img
