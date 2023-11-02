@@ -1,11 +1,14 @@
 import Camera from './components/Camera';
 import Navigator from './components/Navigator';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Calendar from './components/Calendar';
 import Main from './components/Main';
 import './App.css';
 
 function App() {
+  const location = useLocation();
+  const HideNavigator = location.pathname === "/camera";
+
   return (
     <div className='All-container'>
       <Routes>
@@ -13,8 +16,8 @@ function App() {
         <Route path="/camera" element={<Camera />} />
         <Route path="/calendar" element={<Calendar />} />
       </Routes>
-      {/* <Camera /> */}
-      <Navigator />
+      {/* <Navigator /> */}
+      {HideNavigator ? '' : <Navigator />}
     </div>
   );
 }
