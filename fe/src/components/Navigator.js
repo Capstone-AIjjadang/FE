@@ -12,19 +12,19 @@ const Navigator = () => {
         <div className={styles.container}>
             <div className={styles.menu_bar}>
                 <Link to="/" className={styles.links}>
-                    <BiHomeAlt2 size='40' /><br />홈
+                    <BiHomeAlt2 size='30' /><br />홈
                 </Link>
                 <Link to="/camera" className={styles.links}>
-                    <BiCamera size='40' /><br />촬영
+                    <BiCamera size='30' /><br />촬영
                 </Link>
                 <Link to="/recommend" className={styles.links}>
-                    <GoThumbsup size='40' /><br />음식추천
+                    <GoThumbsup size='30' /><br />음식추천
                 </Link>
                 <Link to="/calendar" className={styles.links}>
-                    <BiCalendarAlt size='40' /><br />캘린더
+                    <BiCalendarAlt size='30' /><br />캘린더
                 </Link>
                 <Link to="/my" className={styles.links}>
-                    <CgProfile size='40' /><br />내 건강정보
+                    <CgProfile size='30' /><br />내 건강정보
                 </Link>
             </div>
         </div>

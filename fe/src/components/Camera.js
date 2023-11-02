@@ -15,9 +15,6 @@ const Camera = () => {
         e.preventDefault();
         fileInput.current.click();
     };
-    const handleChange = e => {
-        fileInput.current.click();
-    };
     const handleImageSelect = (e) => {
         const selectedImage = e.target.files[0];
         if (selectedImage) {
