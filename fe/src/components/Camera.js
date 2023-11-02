@@ -1,10 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
 import '../css/Camera.css';
-=======
-import '../Module.css/Camera.module.css';
-import btn_gallary from '../styles/btn_gallary.png';
->>>>>>> Develop
 import { useState } from 'react';
 import Webcam from "react-webcam";
 // npm install react-webcam

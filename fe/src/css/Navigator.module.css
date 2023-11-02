@@ -1,0 +1,32 @@
+.container {
+    position: fixed;
+    bottom: 0%;
+    display: inline;
+
+    margin-left: 0%;
+    width: 60vw;
+    border-top: 4px solid #6C95EC;
+    border-radius: 21px;
+}
+
+.menu_bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 12px;
+}
+
+.links {
+    position: relative;
+    color: #8F8F8F;
+    text-decoration: none;
+    margin-inline: auto;
+    font-size: 2rem;
+    white-space: nowrap;
+    text-align: center;
+    transition: 0.5s ease;
+
+    &:hover {
+        color: #3D61AD;
+    }
+}
