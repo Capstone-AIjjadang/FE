@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from '../css/Navigator.module.css';
 import { Link } from 'react-router-dom';
-import { BiHomeAlt2, BiCamera, BiCalendarAlt } from 'react-icons/bi';
+import { BiHomeAlt2, BiCamera } from 'react-icons/bi';
+import { BsGraphUp } from 'react-icons/bs';
 import { CgProfile } from 'react-icons/cg';
 import { GoThumbsup } from 'react-icons/go';
 //npm install react-router-dom
@@ -20,8 +21,8 @@ const Navigator = () => {
                 <Link to="/recommend" className={styles.links}>
                     <GoThumbsup size='30' /><br />음식추천
                 </Link>
-                <Link to="/calendar" className={styles.links}>
-                    <BiCalendarAlt size='30' /><br />캘린더
+                <Link to="/graph" className={styles.links}>
+                    <BsGraphUp size='30' /><br />영양성분
                 </Link>
                 <Link to="/my" className={styles.links}>
                     <CgProfile size='30' /><br />내 건강정보
