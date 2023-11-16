@@ -1,0 +1,118 @@
+.container {
+    background-color: white;
+    width: 60vw;
+    /* height: 100vh; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 1%;
+}
+
+.Section1 {
+    width: 100%;
+    height: 106px;
+    margin-bottom: 8%;
+    border-bottom: 4px solid #6C95EC;
+    border-radius: 21px;
+}
+
+.calendar {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.Section1 button {
+    border: 2px solid #85ADDE;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.Section2 {
+    margin-bottom: 8%;
+    /* border: 3px solid #3A4750;
+    border-radius: 10px; */
+    width: 94%;
+    height: 264px;
+}
+
+.Day_container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+
+    border: 3px solid #3A4750;
+    border-radius: 10px;
+    height: 220px;
+}
+
+
+
+.Progress {
+    width: 508px;
+    height: 10px;
+    background-color: #F5EBEB;
+}
+
+.Dealt {
+    background-color: #3A4750;
+    /* height: 100%; */
+}
+
+.sec1,
+.sec2 {
+    width: 76%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.Section3 {
+    /* border: 3px solid #3A4750;
+    border-radius: 10px; */
+    width: 94%;
+}
+
+.Food_container {
+    display: flex;
+    border: 3px solid #3A4750;
+    border-radius: 10px;
+    margin-bottom: 3%;
+}
+
+.todaymeal_container {
+    padding: 0;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    list-style: none;
+    align-items: flex-start;
+}
+
+.foodname {
+    margin-left: 10%;
+    color: #3D61AD;
+    font-weight: 700;
+}
+
+span {
+    color: #858585;
+    font-weight: 500;
+}
