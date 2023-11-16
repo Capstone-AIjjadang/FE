@@ -1,0 +1,74 @@
+.container {
+    background-color: white;
+    width: 60vw;
+}
+
+.header {
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #6C95EC;
+}
+
+.Section_container {
+    margin-top: 3%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    font-size: 20px;
+    margin-bottom: 1%;
+}
+
+.Section1 {
+    margin-bottom: 4%;
+    /* border: 3px solid #3A4750;
+    border-radius: 10px; */
+    width: 94%;
+}
+
+.IngredientAlarm_container {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    border: 3px solid #3A4750;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    height: 125px;
+
+}
+
+.Alarm_direction {
+    color: red;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.Section2 {
+    margin-bottom: 4%;
+    /* border: 3px solid #3A4750;
+    border-radius: 10px; */
+    width: 94%;
+}
+
+.Recommend_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 3px solid #3A4750;
+    border-radius: 10px;
+    margin-bottom: 3%;
+    height: 382px;
+}
+
+.Rec_foods {
+    padding: 0;
+    color: #3D61AD;
+    font-weight: 600;
+    font-size: 30px;
+}
