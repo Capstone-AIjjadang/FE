@@ -3,6 +3,7 @@ import Navigator from './components/Navigator';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import FoodRecommend from './components/FoodRecommend';
 import Main from './components/Main';
+import My from './components/My';
 import CameraAnalysis from './components/CameraAnalysis';
 import './App.css';
 
@@ -17,6 +18,7 @@ function App() {
         <Route path="/camera" element={<Camera />} />
         <Route path="/recommend" element={<FoodRecommend />} />
         <Route path="/camera/analysis" element={<CameraAnalysis />} />
+        <Route path="/My" element={<My />} />
       </Routes>
       {/* <Navigator /> */}
       {HideNavigator ? '' : <Navigator />}
