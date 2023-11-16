@@ -1,0 +1,105 @@
+.container {
+    background-color: white;
+    width: 60vw;
+    /* height: 100vh; */
+}
+
+.header {
+    /* height: 8%; */
+    height: 72px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 3px solid #6C95EC;
+}
+
+.form {
+    margin-top: 3%;
+    height: 1034px;
+    /* height: 88%; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.screen_container {
+    display: flex;
+    justify-content: center;
+    /* height: 50%; */
+    height: 300px;
+    border: 3px solid #3A4750;
+    border-radius: 10px;
+    width: 75%;
+}
+
+.analysis_container {
+    margin-top: 3%;
+    border: 3px solid #3A4750;
+    border-radius: 10px;
+    /* height: 30%; */
+    height: 284px;
+    width: 75%;
+}
+
+.foodname {
+    font-size: 24px;
+    color: #3D61AD;
+    font-weight: 700;
+    margin-left: 36px;
+    margin-top: 10px;
+}
+
+.analysis {
+    height: 260px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+li {
+    list-style: none;
+}
+
+.info_container {
+    margin-top: 3%;
+    border: 3px solid #3A4750;
+    border-radius: 10px;
+    height: 90px;
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.gagebar {
+    height: 44px;
+    display: flex;
+    width: 200px;
+}
+
+/* .sec1,
+.sec2 {
+    width: 76%;
+    display: flex;
+    justify-content: space-around;
+} */
+
+.btn_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 3%;
+    /* height: 6%; */
+    height: 40px;
+    width: 75%;
+}
+
+.btn_record {
+    border: none;
+    background-color: #6C95EC;
+    border-radius: 50px;
+    font-size: 1rem;
+    /* height: 70%; */
+    height: 40px;
+    width: 32%;
+}
