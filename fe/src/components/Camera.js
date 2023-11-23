@@ -46,27 +46,32 @@ const Camera = () => {
         <div className='camera_container'>
             <Link to="/" className='GotoHome' />
             <div className='screen_container'>
-                {capturedImage ? (
-                    <img
-                        src={capturedImage}
-                        alt='Captured'
-                        className='screen'
-                    />
-                ) : (
-                    <Webcam
-                        ref={webcamRef}
-                        className='screen'
-                        screenshotFormat='image/jpeg'
-                    // minScreenshotWidth={1080}
-                    // minScreenshotHeight={720}
-                    />
-                )}
+                <div className='dd'>
+                    {capturedImage ? (
+                        <img
+                            src={capturedImage}
+                            alt='Captured'
+                            className='screen'
+                        // style={{ width: '30vw', height: '63vh' }}
+                        />
+                    ) : (
+                        <Webcam
+                            ref={webcamRef}
+                            className='screen'
+                            screenshotFormat='image/jpeg'
+                            screenshotQuality={1}
+                            minScreenshotWidth={1080}
+                            minScreenshotHeight={720}
+                        // width={ }
+                        />
+                    )}
+                </div>
                 <div className='food_name'>
                     {capturedImage ? '찍은 사진' : '인식된 음식이름'}
                 </div>
             </div>
             <br />
-            <div className='btns'>
+            <div>
                 <form type="submit" className='btns'>
                     <input
                         type="file"
@@ -80,16 +85,16 @@ const Camera = () => {
                         <img src={process.env.PUBLIC_URL + "/imgs/btn_gallary.png"} className='btn_gallary' />
                     </button>
 
-                    <button type="button" className='btn_photo' onClick={capturedImage ? resetImage : captureImage}>
-                        {capturedImage ? '다시 찍기' : '사진 찍기'}
-                    </button>
-
-                    <div
-                        className={`toggle-button ${isActive ? 'ingredient' : 'food'}`}
-                        onClick={handleToggle}
-                    >
+                    <button type="button" className='btn_photo' onClick={capturedImage ? resetImage : captureImage} />
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
+                        <div
+                            className={`toggle-button ${isActive ? 'ingredient' : 'food'}`}
+                            onClick={handleToggle}
+                        >
+                        </div>
+                        {buttonText}
                     </div>
-                    {buttonText}
+
                 </form>
             </div>
         </div>
