@@ -8,6 +8,14 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 
 const Graph = () => {
 
+    const buttonList = ['탄수화물', '단백질', '지방', '단백질', '나트륨', '칼슘'];
+
+    const [currentValueIndex, setCurrentValueIndex] = useState(0);
+
+    const toggleButton = () => {
+        setCurrentValueIndex((prevIndex) => (prevIndex + 1) % buttonList.length);
+    };
+
     const data = [
         { day: '월', value: 500 },
         { day: '화', value: 300 },
@@ -29,27 +37,38 @@ const Graph = () => {
                 <img src={"/imgs/Logo.png"} height="50px" />
             </div>
 
-            <div className={style.title}><MdOutlineRecommend />사용자 정보</div>
+            <div className={style.title}><MdOutlineRecommend /> 주간 영양소 섭취량</div>
 
             <div className={style.center_container}>
-                <button onClick={handleEditClick} className={style.edit_profile}>
-                    정보 수정
-                </button>
+                {buttonList.map((button, index) => (
+                    <button
+                        key={button}
+                        onClick={toggleButton}
+                        className={style.edit_profile}
+                        style={{ display: index === currentValueIndex ? 'inline-block' : 'none' }}
+                        >
+                        {button}
+                    </button>
+                ))}
             </div>
 
-            <LineChart
-                width={600}
-                height={300}
-                data={data}
-                margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-                >
-                <CartesianGrid strokeDasharray="3 3" />
-                <XAxis dataKey="day" />
-                <YAxis />
-                <Tooltip />
-                <Legend />
-                <Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{ r: 8 }} />
-            </LineChart>
+            <div className={style.center_container}>
+                <LineChart
+                    width={650}
+                    height={300}
+                    data={data}
+                    margin={{ top: 50, right: 30, left: 10, bottom:0}}
+                    >
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="day" />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey="value" name={buttonList[currentValueIndex]} stroke="#8884d8" activeDot={{ r: 8 }} />
+                </LineChart>
+            </div>
+
+            
         </div>
     );
 };

@@ -12,22 +12,30 @@ const My = () => {
         height: 180,
         medicalHistory: '선택',
       });
-    
-      const handleEditClick = () => {
-        // 여기에 정보 수정 모달 또는 다른 수정 방법을 구현할 수 있습니다.
-        alert('Edit button clicked!');
-      };
 
-      const options1 = [
-        { value: 'option1', label: '남자' },
-        { value: 'option2', label: '여자' },
-      ];
+    const [isAVisible, setAVisible] = useState(true);
+    const [isBVisible, setBVisible] = useState(false);
 
-      const options2 = [
-        { value: 'option1', label: '비만' },
-        { value: 'option2', label: '고혈압' },
-        { value: 'option3', label: '당뇨' },
-      ];
+    const toggleButtons = () => {
+    setAVisible(!isAVisible);
+    setBVisible(!isBVisible);
+    };
+
+    const handleEditClick = () => {
+    // 여기에 정보 수정 모달 또는 다른 수정 방법을 구현할 수 있습니다.
+    alert('Edit button clicked!');
+    };
+
+    const options1 = [
+    { value: 'option1', label: '남자' },
+    { value: 'option2', label: '여자' },
+    ];
+
+    const options2 = [
+    { value: 'option1', label: '비만' },
+    { value: 'option2', label: '고혈압' },
+    { value: 'option3', label: '당뇨' },
+    ];
 
       
 
@@ -39,7 +47,7 @@ const My = () => {
                 <img src={"/imgs/Logo.png"} height="50px" />
             </div>
 
-            <div className={style.title}><MdOutlineRecommend />사용자 정보</div>
+            <div className={style.title}><MdOutlineRecommend /> 사용자 정보</div>
             <div className={style.Section_container}>
                 <div className={style.Section1}>
                     
@@ -83,9 +91,16 @@ const My = () => {
         </div>
 
         <div className={style.center_container}>
-            <button onClick={handleEditClick} className={style.edit_profile}>
-                정보 수정
-            </button>
+            {isAVisible && (
+                <button onClick={toggleButtons} className={style.edit_profile}>
+                    정보 수정
+                </button>
+            )}
+            {isBVisible && (
+                <button onClick={toggleButtons} className={style.edit_profile}>
+                    확인
+                </button>
+            )}
         </div>
         
         </div>
