@@ -32,7 +32,7 @@ const Graph = () => {
     return (
         <div className={style.container}>
             <div className={style.header}>
-                <img src={"/imgs/Logo.png"} height="50px" />
+                <img src={"/imgs/Logo.png"} height="30px" />
             </div>
 
             <div className={style.center_container}>

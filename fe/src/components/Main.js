@@ -29,17 +29,11 @@ const Main = () => {
     return (
         <div className={style.container}>
             <div className={style.header}>
-                <img src={"/imgs/Logo.png"} height="50px" />
-            </div>
-
-            <div>
-                <p>현재 날짜: {formattedDate}</p>
-                <p>오늘은 {dayOfWeek} 입니다.</p>
+                <img src={"/imgs/Logo.png"} height="30px" />
             </div>
 
             <div className={style.Section1}>
-                <div className={style.title}><MdOutlineCalendarToday />캘린더</div>
-
+                {/* <div style={{ marginLeft: '10px'}} ><MdOutlineCalendarToday /> 캘린더</div> */}
                 <div className={style.calendar}>
                     <button type='button' className={`${style.btn_day} ${dayOfWeek === "일요일" ? style.active : ''}`}>일</button>
                     <button type='button' className={`${style.btn_day} ${dayOfWeek === "월요일" ? style.active : ''}`}>월</button>
@@ -51,7 +45,7 @@ const Main = () => {
                 </div>
             </div>
             <div className={style.Section2}>
-                <div className={style.title}><MdOutlineToday />일일섭취량</div>
+                <div className={style.title}><MdOutlineToday /> 일일섭취량</div>
                 <div className={style.Day_container}>
                     <div className={style.Kcal}>
                         총 칼로리 <span>00Kcal</span>
@@ -63,26 +57,26 @@ const Main = () => {
                             <LinearProgress variant="determinate" value={50} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                         <div>
-                            지방<span>00g</span>
+                            지방 <span>00g</span>
                             <LinearProgress variant="determinate" value={50} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                     </div>
                     <div className={style.sec2}>
                         <div>
-                            단백질<span>00g</span>
+                            단백질 <span>00g</span>
                             <LinearProgress variant="determinate" value={50} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                         <div>
-                            칼슘<span>00g</span>
+                            칼슘 <span>00g</span>
                             <LinearProgress variant="determinate" value={50} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                     </div>
                 </div>
             </div>
             <div className={style.Section3}>
-                <div className={style.title}><MdOutlineFastfood />오늘의 식사</div>
+                <div className={style.title}><MdOutlineFastfood /> 오늘의 식사</div>
                 <div className={style.Food_container}>
-                    <img src={"/imgs/foodsample.jpg"} width="200" height="200" />
+                    <img src={"/imgs/foodsample1.png"} width="200" height="200"  style={{ borderRadius: '15px' }}/>
                     <ul className={style.todaymeal_container}>
                         <div className={style.foodname} >음식이름 <span>00Kcal</span></div>
                         <div className={style.sec1}>
@@ -96,7 +90,7 @@ const Main = () => {
                     </ul>
                 </div>
                 <div className={style.Food_container}>
-                    <img src={"/imgs/foodsample.jpg"} width="200" height="200" />
+                    <img src={"/imgs/foodsample2.png"} width="200" height="200"  style={{ borderRadius: '15px' }}/>
                     <ul className={style.todaymeal_container}>
                         <div className={style.foodname} >음식이름 <span>00Kcal</span></div>
                         <div className={style.sec1}>

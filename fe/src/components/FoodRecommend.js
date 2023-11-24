@@ -7,11 +7,11 @@ const FoodRecommend = () => {
     return (
         <div className={style.container}>
             <div className={style.header}>
-                <img src={"/imgs/Logo.png"} height="50px" />
+                <img src={"/imgs/Logo.png"} height="30px" />
             </div>
             <div className={style.Section_container}>
                 <div className={style.Section1}>
-                    <div className={style.title}><MdOutlineAlarmOn />성분 경보기</div>
+                    <div className={style.title}><MdOutlineAlarmOn /> 성분 경보기</div>
                     <div className={style.IngredientAlarm_container}>
                         <div className={style.title}>
                             나트륨 경보기
@@ -26,7 +26,7 @@ const FoodRecommend = () => {
                     </div>
                 </div>
                 <div className={style.Section2}>
-                    <div className={style.title}><MdOutlineRecommend />추천 음식</div>
+                    <div className={style.title}><MdOutlineRecommend /> 추천 음식</div>
                     <div className={style.Recommend_container}>
                         <div className={style.Rec_direction}>현재 잔여 나트륨 함량은 00g 입니다.<br />
                             권장 칼륨은 00g 입니다.<br />

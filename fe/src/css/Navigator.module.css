@@ -14,6 +14,7 @@
     flex-direction: row;
     justify-content: center;
     margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .links {
@@ -21,7 +22,8 @@
     color: #8F8F8F;
     text-decoration: none;
     margin-inline: auto;
-    font-size: 1.5rem;
+    font-size: 16px;
+    font-weight: bold;
     white-space: nowrap;
     text-align: center;
     transition: 0.5s ease;
@@ -36,7 +38,8 @@
     color: #3D61AD;
     text-decoration: none;
     margin-inline: auto;
-    font-size: 1.5rem;
+    font-size: 16px;
+    font-weight: bold;
     white-space: nowrap;
     text-align: center;
     transition: 0.5s ease;
