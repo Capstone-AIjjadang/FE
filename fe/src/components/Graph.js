@@ -35,8 +35,6 @@ const Graph = () => {
                 <img src={"/imgs/Logo.png"} height="50px" />
             </div>
 
-            <div className={style.title}><MdOutlineRecommend /> 주간 영양소 섭취량</div>
-
             <div className={style.center_container}>
                 {buttonList.map((button, index) => (
                     <button
