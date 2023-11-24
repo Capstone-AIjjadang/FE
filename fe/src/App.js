@@ -6,6 +6,7 @@ import Main from './components/Main';
 import My from './components/My';
 import Graph from './components/Graph';
 import CameraAnalysis from './components/CameraAnalysis';
+import TextAnalysis from './components/TextAnalysis';
 import './App.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
         <Route path="/camera" element={<Camera />} />
         <Route path="/recommend" element={<FoodRecommend />} />
         <Route path="/camera/analysis" element={<CameraAnalysis />} />
+        <Route path="/camera/textanalysis" element={<TextAnalysis />} />
         <Route path="/Graph" element={<Graph />} />
         <Route path="/My" element={<My />} />
       </Routes>

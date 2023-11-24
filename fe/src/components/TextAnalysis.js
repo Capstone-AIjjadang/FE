@@ -2,7 +2,7 @@ import React from 'react';
 import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
 
-const CameraAnalysis = () => {
+const TextAnalysis = () => {
     const [rating, setRating] = React.useState(0);
     const handleRatingChange = (value) => {
         setRating(value);
@@ -50,29 +50,39 @@ const CameraAnalysis = () => {
                     </div>
                 </div>
                 <div className={style.info_container}>
-                    <div className={style.title}>
-                        얼마나 드셨나요?
+                    <div className={style.Info1}>
+                        <div className={style.title}>
+                            얼마나 드셨나요?
+                        </div>
+                        <div className={style.gagebar}>
+                            {[1, 2, 3, 4].map((space) => (
+                                <div
+                                    key={space}
+                                    onClick={() => handleRatingChange(space / 4)}
+                                    style={{
+                                        display: 'flex',
+                                        flex: 1,
+                                        cursor: 'pointer',
+                                        textAlign: 'center',
+                                        justifyContent: 'center',
+                                        alignItems: 'center',
+                                        backgroundColor: space / 4 <= rating ? '#6C95EC' : '#F5EBEB',
+                                        marginLeft: '3px',
+                                    }}
+                                >
+                                    {space}/{4}
+                                </div>
+                            ))}
+                            {rating}
+                        </div>
                     </div>
-                    <div className={style.gagebar}>
-                        {[1, 2, 3, 4].map((space) => (
-                            <div
-                                key={space}
-                                onClick={() => handleRatingChange(space / 4)}
-                                style={{
-                                    display: 'flex',
-                                    flex: 1,
-                                    cursor: 'pointer',
-                                    textAlign: 'center',
-                                    justifyContent: 'center',
-                                    alignItems: 'center',
-                                    backgroundColor: space / 4 <= rating ? '#6C95EC' : '#F5EBEB',
-                                    marginLeft: '3px',
-                                }}
-                            >
-                                {space}/{4}
-                            </div>
-                        ))}
-                        {rating}
+                    <div className={style.Info2}>
+                        <div className={style.title}>
+                            무슨 음식인가요?
+                        </div>
+                        <div className={style.write_foodname}>
+                            <input type='text' placeholder='드신 음식을 적어주세요.' />
+                        </div>
                     </div>
                 </div>
                 <div className={style.btn_container}>
@@ -83,4 +93,4 @@ const CameraAnalysis = () => {
     );
 };
 
-export default CameraAnalysis;
+export default TextAnalysis;

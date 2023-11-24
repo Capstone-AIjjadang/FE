@@ -78,12 +78,16 @@ li {
     width: 200px;
 }
 
-/* .sec1,
-.sec2 {
-    width: 76%;
-    display: flex;
-    justify-content: space-around;
-} */
+.write_foodname input {
+    background-color: #F5EBEB;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+}
+
+.write_foodname input :focus {
+    outline: none;
+}
 
 .btn_container {
     display: flex;
