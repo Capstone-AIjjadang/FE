@@ -46,26 +46,24 @@ const Camera = () => {
         <div className='camera_container'>
             <Link to="/" className='GotoHome' />
             <div className='screen_container'>
-                <div className='dd'>
-                    {capturedImage ? (
-                        <img
-                            src={capturedImage}
-                            alt='Captured'
-                            className='screen'
-                        // style={{ width: '30vw', height: '63vh' }}
-                        />
-                    ) : (
-                        <Webcam
-                            ref={webcamRef}
-                            className='screen'
-                            screenshotFormat='image/jpeg'
-                            screenshotQuality={1}
-                            minScreenshotWidth={1080}
-                            minScreenshotHeight={720}
-                        // width={ }
-                        />
-                    )}
-                </div>
+                {capturedImage ? (
+                    <img
+                        src={capturedImage}
+                        alt='Captured'
+                        className='screen'
+                    />
+
+                ) : (
+                    <Webcam
+                        ref={webcamRef}
+                        className='screen'
+                        screenshotFormat='image/jpeg'
+                        screenshotQuality={1}
+                        minScreenshotWidth={1080}
+                        minScreenshotHeight={720}
+                    // width={ }
+                    />
+                )}
                 <div className='food_name'>
                     {capturedImage ? '찍은 사진' : '인식된 음식이름'}
                 </div>
@@ -97,7 +95,7 @@ const Camera = () => {
 
                 </form>
             </div>
-        </div>
+        </div >
     );
 };
 export default Camera;

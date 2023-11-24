@@ -32,7 +32,7 @@ const Main = () => {
                 <div className={style.Day_container}>
                     <div className={style.Kcal}>
                         총 칼로리 <span>00Kcal</span>
-                        <LinearProgress variant="determinate" value={50} style={{ width: '300px', height: '50%', borderRadius: '10px' }} />
+                        <LinearProgress variant="determinate" value={80} style={{ width: '300px', height: '50%', borderRadius: '10px' }} />
                     </div>
                     <div className={style.sec1}>
                         <div>
