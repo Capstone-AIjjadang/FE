@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-    margin-bottom: 165px;
+    margin-bottom: 50px;
 }
 
 .title {
@@ -63,7 +63,7 @@
 .Username {
     color: #3A4750;
     font-weight: bold;
-    font-size: 30px;
+    font-size: 25px;
 }
 
 .User_profile {

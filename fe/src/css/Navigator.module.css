@@ -30,3 +30,18 @@
         color: #3D61AD;
     }
 }
+
+.links.active {
+    position: relative;
+    color: #3D61AD;
+    text-decoration: none;
+    margin-inline: auto;
+    font-size: 1.5rem;
+    white-space: nowrap;
+    text-align: center;
+    transition: 0.5s ease;
+
+    &:hover {
+        color: #3D61AD;
+    }
+}
