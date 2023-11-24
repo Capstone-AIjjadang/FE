@@ -1,5 +1,4 @@
 import React from 'react';
-import Navigator from './Navigator';
 import style from '../css/Main.module.css';
 import { MdOutlineCalendarToday, MdOutlineToday, MdOutlineFastfood } from "react-icons/md";
 import { LinearProgress } from '@mui/material';
@@ -87,7 +86,6 @@ const Main = () => {
                     </ul>
                 </div>
             </div>
-            <Navigator />
         </div>
     );
 };
