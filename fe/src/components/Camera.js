@@ -43,6 +43,7 @@ const Camera = () => {
     };
 
     return (
+        // 
         <div className='camera_container'>
             <Link to="/" className='GotoHome' />
             <div className='screen_container'>
