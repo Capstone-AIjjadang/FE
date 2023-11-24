@@ -15,10 +15,9 @@ const TextAnalysis = () => {
             </div>
             <form className={style.form}>
                 <div className={style.screen_container}>
-                    <div><img src={"/imgs/foodsample.jpg"} height="300" /></div>
+                    <div><img src={"/imgs/textsample.png"} height="300" /></div>
                 </div>
                 <div className={style.analysis_container}>
-                    <div className={style.foodname}>인식된 음식이름</div>
                     <div className={style.analysis}>
                         <div className={style.sec1}>
                             <li>총 칼로리 <span>00Kcal</span>
