@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import Navigator from './Navigator';
-import style from '../css/My.module.css';
-import { MdOutlineAlarmOn, MdOutlineRecommend } from "react-icons/md";
-import { CircularProgress, CircularProgressWithLabel } from '@mui/material';
+import style from '../css/Graph.module.css';
+import { MdOutlineRecommend } from "react-icons/md";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 
@@ -25,7 +24,7 @@ const Graph = () => {
         { day: '토', value: 800 },
         { day: '일', value: 400 },
     ];
-    
+
     const handleEditClick = () => {
         // 여기에 정보 수정 모달 또는 다른 수정 방법을 구현할 수 있습니다.
         alert('Edit button clicked!');
@@ -46,7 +45,7 @@ const Graph = () => {
                         onClick={toggleButton}
                         className={style.edit_profile}
                         style={{ display: index === currentValueIndex ? 'inline-block' : 'none' }}
-                        >
+                    >
                         {button}
                     </button>
                 ))}
@@ -57,8 +56,8 @@ const Graph = () => {
                     width={650}
                     height={300}
                     data={data}
-                    margin={{ top: 50, right: 30, left: 10, bottom:0}}
-                    >
+                    margin={{ top: 50, right: 30, left: 10, bottom: 0 }}
+                >
                     <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="day" />
                     <YAxis />
@@ -68,7 +67,7 @@ const Graph = () => {
                 </LineChart>
             </div>
 
-            
+
         </div>
     );
 };
