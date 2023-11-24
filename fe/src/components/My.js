@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-import Navigator from './Navigator';
 import style from '../css/My.module.css';
-import { MdOutlineAlarmOn, MdOutlineRecommend } from "react-icons/md";
-import { CircularProgress, CircularProgressWithLabel } from '@mui/material';
+import { MdOutlineRecommend } from "react-icons/md";
 
 const My = () => {
     const [userInfo, setUserInfo] = useState({

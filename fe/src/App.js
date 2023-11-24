@@ -22,7 +22,6 @@ function App() {
         <Route path="/Graph" element={<Graph />} />
         <Route path="/My" element={<My />} />
       </Routes>
-      {/* <Navigator /> */}
       {HideNavigator ? '' : <Navigator />}
     </div>
   );

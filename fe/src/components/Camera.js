@@ -3,7 +3,6 @@ import '../css/Camera.css';
 import { useState } from 'react';
 import Webcam from "react-webcam";
 import { Link } from 'react-router-dom';
-// npm install react-webcam
 
 const Camera = () => {
 

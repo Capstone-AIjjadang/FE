@@ -1,6 +1,5 @@
 import React from 'react';
 import style from "../css/CameraAnalysis.module.css";
-import Navigator from './Navigator';
 import { LinearProgress } from '@mui/material';
 
 const CameraAnalysis = () => {
@@ -80,7 +79,6 @@ const CameraAnalysis = () => {
                     <button className={style.btn_record}>기록하기</button>
                 </div>
             </form>
-            <Navigator />
         </div>
     );
 };

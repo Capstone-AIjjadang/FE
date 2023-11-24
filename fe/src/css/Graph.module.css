@@ -33,20 +33,7 @@
     margin-bottom: 1%;
 }
 
-.Username {
-    color: #3A4750;
-    font-weight: bold;
-    font-size: 30px;
-}
-
-.User_profile {
-    color: black;
-    align-items: left;
-    font-size: 22px;
-    line-height: 0.95;
-}
-
-.edit_profile {
+.btn_style {
     height: 56px;
     width: 156px;
     border-radius: 30px;
@@ -63,6 +50,6 @@
     font-weight: bold;
 }
 
-.edit_profile:hover {
+.btn_style:hover {
     background-color: #1c6ca1;
 }

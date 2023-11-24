@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import Navigator from './Navigator';
 import style from '../css/Graph.module.css';
 import { MdOutlineRecommend } from "react-icons/md";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
@@ -43,7 +42,7 @@ const Graph = () => {
                     <button
                         key={button}
                         onClick={toggleButton}
-                        className={style.edit_profile}
+                        className={style.btn_style}
                         style={{ display: index === currentValueIndex ? 'inline-block' : 'none' }}
                     >
                         {button}
