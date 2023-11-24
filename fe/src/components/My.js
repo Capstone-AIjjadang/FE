@@ -42,7 +42,7 @@ const My = () => {
 
         <div className={style.container}>
             <div className={style.header}>
-                <img src={"/imgs/Logo.png"} height="50px" />
+                <img src={"/imgs/Logo.png"} height="30px" />
             </div>
 
             <div className={style.title}><MdOutlineRecommend /> 사용자 정보</div>
