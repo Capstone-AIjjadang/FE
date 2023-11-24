@@ -28,8 +28,28 @@ const Camera = () => {
     //webcam 사진캡쳐 부분
     const captureImage = (e) => {
         e.preventDefault();
-        const imageSrc = webcamRef.current.getScreenshot(); //형식 지정하게 할 수 있니?
-        setCapturedImage(imageSrc);
+        const imageSrc = webcamRef.current.getScreenshot();
+
+        // base64 이미지를 Blob으로 변환
+        const byteString = atob(imageSrc.split(',')[1]);
+        const mimeString = imageSrc.split(',')[0].split(':')[1].split(';')[0];
+        const ab = new ArrayBuffer(byteString.length);
+        const ia = new Uint8Array(ab);
+        for (let i = 0; i < byteString.length; i++) {
+            ia[i] = byteString.charCodeAt(i);
+        }
+        const blob = new Blob([ab], { type: mimeString });
+
+        // FormData 객체를 생성하고 Blob을 추가
+        const formData = new FormData();
+        formData.append('file', blob, 'image.jpg');
+
+        // 이제 formData에 JPEG 형식의 이미지가 포함되어 있습니다.
+        formData.forEach((value, key) => {
+            console.log(key, value);
+        });
+        const imageUrl = URL.createObjectURL(blob);
+        setCapturedImage(imageUrl);
     };
     const resetImage = () => {
         setCapturedImage(null);
