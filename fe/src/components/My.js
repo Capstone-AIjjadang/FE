@@ -18,11 +18,18 @@ const My = () => {
         alert('Edit button clicked!');
       };
 
-      const options = [
+      const options1 = [
+        { value: 'option1', label: '남자' },
+        { value: 'option2', label: '여자' },
+      ];
+
+      const options2 = [
         { value: 'option1', label: '비만' },
         { value: 'option2', label: '고혈압' },
-        { value: 'option3', label: 'Option 3' },
+        { value: 'option3', label: '당뇨' },
       ];
+
+      
 
     return (
         
@@ -49,16 +56,27 @@ const My = () => {
                         <p>나이 : {userInfo.age}세</p>
                         <p>체중 : {userInfo.weight}kg</p>
                         <p>키 : {userInfo.height}cm</p>
-                        <div>
-                            나의 병력  
+                        <p>
+                            성별 : 
                             <select id="selectBox">
-                                {options.map((option) => (
+                                {options1.map((option) => (
                                 <option key={option.value} value={option.value}>
                                     {option.label}
                                 </option>
                                 ))}
                             </select>
-                        </div>
+                        </p>
+
+                        <p>
+                            나의 병력  :
+                            <select id="selectBox">
+                                {options2.map((option) => (
+                                <option key={option.value} value={option.value}>
+                                    {option.label}
+                                </option>
+                                ))}
+                            </select>
+                        </p>
                     </div>
                 </div>
             </div>
