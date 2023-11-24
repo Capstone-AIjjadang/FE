@@ -27,6 +27,16 @@
     border-radius: 21px;
 }
 
+.btn_day{
+    color : black;
+    background-color: white;
+}
+
+.btn_day.active{
+    color : white;
+    background-color: #3D61AD;
+}
+
 .calendar {
     display: flex;
     justify-content: space-evenly;

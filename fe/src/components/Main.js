@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import style from '../css/Main.module.css';
 import { MdOutlineCalendarToday, MdOutlineToday, MdOutlineFastfood } from "react-icons/md";
 import { LinearProgress } from '@mui/material';
@@ -8,22 +8,46 @@ const Main = () => {
     const maxNum = 100;
     const dealt = Math.floor((num / maxNum) * 100);
 
+    const [currentDate, setCurrentDate] = useState(new Date());
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      // 매 초마다 현재 날짜 업데이트
+      setCurrentDate(new Date());
+    }, 1000);
+
+    // 컴포넌트가 언마운트될 때 interval 정리
+    return () => clearInterval(intervalId);
+  }, []); // 빈 배열을 전달하여 컴포넌트가 처음 렌더링될 때만 실행
+
+  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const formattedDate = currentDate.toLocaleDateString('ko-KR', options);
+  const dayOfWeek = currentDate.toLocaleDateString('ko-KR', { weekday: 'long' }); // 요일만 따로 저장
+
+
+
     return (
         <div className={style.container}>
             <div className={style.header}>
                 <img src={"/imgs/Logo.png"} height="50px" />
             </div>
+
+            <div>
+                <p>현재 날짜: {formattedDate}</p>
+                <p>오늘은 {dayOfWeek} 입니다.</p>
+            </div>
+
             <div className={style.Section1}>
                 <div className={style.title}><MdOutlineCalendarToday />캘린더</div>
 
                 <div className={style.calendar}>
-                    <button type='button' className={style.btn_day1}>일</button>
-                    <button type='button' className={style.btn_day2}>월</button>
-                    <button type='button' className={style.btn_day3}>화</button>
-                    <button type='button' className={style.btn_day4}>수</button>
-                    <button type='button' className={style.btn_day5}>목</button>
-                    <button type='button' className={style.btn_day6}>금</button>
-                    <button type='button' className={style.btn_day7}>토</button>
+                    <button type='button' className={`${style.btn_day} ${dayOfWeek === "일요일" ? style.active : ''}`}>일</button>
+                    <button type='button' className={`${style.btn_day} ${dayOfWeek === "월요일" ? style.active : ''}`}>월</button>
+                    <button type='button' className={`${style.btn_day} ${dayOfWeek === "화요일" ? style.active : ''}`}>화</button>
+                    <button type='button' className={`${style.btn_day} ${dayOfWeek === "수요일" ? style.active : ''}`}>수</button>
+                    <button type='button' className={`${style.btn_day} ${dayOfWeek === "목요일" ? style.active : ''}`}>목</button>
+                    <button type='button' className={`${style.btn_day} ${dayOfWeek === "금요일" ? style.active : ''}`}>금</button>
+                    <button type='button' className={`${style.btn_day} ${dayOfWeek === "토요일" ? style.active : ''}`}>토</button>
                 </div>
             </div>
             <div className={style.Section2}>
