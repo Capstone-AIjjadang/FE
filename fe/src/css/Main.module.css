@@ -43,8 +43,6 @@
 
 .Section2 {
     margin-bottom: 8%;
-    /* border: 3px solid #3A4750;
-    border-radius: 10px; */
     width: 94%;
     height: 264px;
 }
@@ -58,7 +56,7 @@
     justify-content: space-around;
     list-style: none;
 
-    border: 3px solid #3A4750;
+    box-shadow: 3px 3px 10px #B5B5B5;
     border-radius: 10px;
     height: 220px;
 }
@@ -73,7 +71,6 @@
 
 .Dealt {
     background-color: #3A4750;
-    /* height: 100%; */
 }
 
 .sec1,
@@ -84,14 +81,12 @@
 }
 
 .Section3 {
-    /* border: 3px solid #3A4750;
-    border-radius: 10px; */
     width: 94%;
 }
 
 .Food_container {
     display: flex;
-    border: 3px solid #3A4750;
+    box-shadow: 3px 3px 10px #B5B5B5;
     border-radius: 10px;
     margin-bottom: 3%;
 }
