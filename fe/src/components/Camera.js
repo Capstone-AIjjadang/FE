@@ -2,7 +2,8 @@ import React from 'react';
 import '../css/Camera.css';
 import { useState } from 'react';
 import Webcam from "react-webcam";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+
 
 const Camera = () => {
 
@@ -11,9 +12,25 @@ const Camera = () => {
 
     const [capturedImage, setCapturedImage] = useState(null);
 
+    const [isActive, setIsActive] = useState(false);
+    const buttonText = isActive ? '성분표' : '음식';
+    const Nowstate = isActive ? 'text' : 'food';
+    const history = useNavigate();
+
+    console.log('now /state : ' + Nowstate);
     const handleButtonClick = e => { //갤러리 버튼 클릭
         e.preventDefault();
+        console.log('갤러리 버튼 클릭');
         fileInput.current.click();
+        // if (Nowstate === 'text') {
+        //     console.log('Navigating to /textanalysis');
+        //     history('/camera/textanalysis');
+        // }
+
+        // else if (Nowstate === 'food') {
+        //     console.log('Navigating to');
+        //     history('/camera/analysis');
+        // }
     };
 
     const handleImageSelect = (e) => {
@@ -49,15 +66,29 @@ const Camera = () => {
         });
         const imageUrl = URL.createObjectURL(blob);
         setCapturedImage(imageUrl);
+
+        if (Nowstate === 'text') {
+            console.log('텍스트결과분석페이지로');
+            history('/camera/textanalysis');
+        }
+
+        else if (Nowstate === 'food') {
+            console.log('음식결과분석페이지로');
+            history('/camera/analysis');
+        }
+
     };
     const resetImage = () => {
         setCapturedImage(null);
     };
 
     //음식,성분표 토글버튼
-    const [isActive, setIsActive] = useState(false);
-    const buttonText = isActive ? '성분표' : '음식';
-    const handleToggle = () => {
+    // const [isActive, setIsActive] = useState(false);
+    // const buttonText = isActive ? '성분표' : '음식';
+    // const Nowstate = isActive ? 'text' : 'food';
+    // const history = useNavigate();
+
+    const handleToggle = (e) => {
         setIsActive(!isActive);
     };
 

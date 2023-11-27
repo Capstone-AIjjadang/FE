@@ -15,7 +15,7 @@ const CameraAnalysis = () => {
             </div>
             <form className={style.form}>
                 <div className={style.screen_container}>
-                    <div><img src={"/imgs/foodsample.jpg"} height="300" /></div>
+                    <div><img src={"/imgs/foodsample1.png"} height="300" /></div>
                 </div>
                 <div className={style.analysis_container}>
                     <div className={style.foodname}>인식된 음식이름</div>
