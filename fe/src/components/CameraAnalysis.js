@@ -11,14 +11,15 @@ const CameraAnalysis = () => {
     return (
         <div className={style.container}>
             <div className={style.header}>
-                <img src={"/imgs/Logo.png"} height="50px" />
+                <img src={"/imgs/Logo.png"} height="30px" />
             </div>
             <form className={style.form}>
                 <div className={style.screen_container}>
-                    <div><img src={"/imgs/foodsample1.png"} height="300" /></div>
+                    <div><img src={"/imgs/foodsample1.png"} height="250" /></div>
+                    <div className={style.foodname}>인식된 음식이름</div>
                 </div>
                 <div className={style.analysis_container}>
-                    <div className={style.foodname}>인식된 음식이름</div>
+                    
                     <div className={style.analysis}>
                         <div className={style.sec1}>
                             <li>총 칼로리 <span>00Kcal</span>
@@ -72,7 +73,6 @@ const CameraAnalysis = () => {
                                 {space}/{4}
                             </div>
                         ))}
-                        {rating}
                     </div>
                 </div>
                 <div className={style.btn_container}>

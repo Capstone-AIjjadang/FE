@@ -11,7 +11,7 @@ const TextAnalysis = () => {
     return (
         <div className={style.container}>
             <div className={style.header}>
-                <img src={"/imgs/Logo.png"} height="50px" />
+                <img src={"/imgs/Logo.png"} height="30px" />
             </div>
             <form className={style.form}>
                 <div className={style.screen_container}>
@@ -72,7 +72,6 @@ const TextAnalysis = () => {
                                     {space}/{4}
                                 </div>
                             ))}
-                            {rating}
                         </div>
                     </div>
                     <div className={style.Info2}>
@@ -80,7 +79,7 @@ const TextAnalysis = () => {
                             무슨 음식인가요?
                         </div>
                         <div className={style.write_foodname}>
-                            <input type='text' placeholder='드신 음식을 적어주세요.' />
+                            <input type='text' placeholder='음식 이름을 적어주세요' />
                         </div>
                     </div>
                 </div>

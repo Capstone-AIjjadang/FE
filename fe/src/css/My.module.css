@@ -30,7 +30,8 @@
 
 .title {
     padding-left : 79px;
-    font-size: 20px;
+    font-size: 17px;
+    font-weight: bold;
     margin-bottom: 1%;
 }
 
@@ -94,3 +95,16 @@
 .edit_profile:hover {
     background-color: #1c6ca1;
   }
+
+
+.write_foodname input {
+    margin-top: 6px;
+    background-color: #F5EBEB;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+}
+
+.write_foodname input :focus {
+    outline: none;
+}

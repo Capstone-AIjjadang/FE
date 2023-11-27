@@ -10,7 +10,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-bottom: 3px solid #6C95EC;
+    border-bottom: 2px solid #6C95EC;
 }
 
 .form {
@@ -25,27 +25,33 @@
 .screen_container {
     display: flex;
     justify-content: center;
+    flex-direction: column;
+    align-items: center;
     /* height: 50%; */
-    height: 300px;
-    border: 3px solid #3A4750;
+    height: 250px;
+    /* border: 3px solid #3A4750; */
     border-radius: 10px;
     width: 75%;
+    margin-top : 50px;
+    margin-bottom : 50px;
+
 }
 
 .analysis_container {
     margin-top: 3%;
-    border: 3px solid #3A4750;
-    border-radius: 10px;
     /* height: 30%; */
-    height: 284px;
+    height: 250px;
     width: 75%;
+
+    box-shadow: 3px 3px 10px #B5B5B5;
+    border-radius: 10px;
 }
 
 .foodname {
-    font-size: 24px;
+    align-items: center;
+    font-size: 20px;
     color: #3D61AD;
     font-weight: 700;
-    margin-left: 36px;
     margin-top: 10px;
 }
 
@@ -62,23 +68,26 @@ li {
 
 .info_container {
     margin-top: 3%;
-    border: 3px solid #3A4750;
-    border-radius: 10px;
-    height: 90px;
+    height: 100px;
     width: 75%;
     display: flex;
     justify-content: space-around;
     align-items: center;
+
+    box-shadow: 3px 3px 10px #B5B5B5;
+    border-radius: 10px;
 }
 
 
 .gagebar {
+    margin-top: 4px;
     height: 44px;
     display: flex;
     width: 200px;
 }
 
 .write_foodname input {
+    margin-top: 6px;
     background-color: #F5EBEB;
     height: 30px;
     border: none;
@@ -99,11 +108,19 @@ li {
 }
 
 .btn_record {
-    border: none;
-    background-color: #6C95EC;
-    border-radius: 50px;
-    font-size: 1rem;
-    /* height: 70%; */
     height: 40px;
-    width: 32%;
+    width: 156px;
+    border-radius: 30px;
+
+    background-color: #6C95EC;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    
+    margin-top : 20px;
+    flex-shrink: 0;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
 }

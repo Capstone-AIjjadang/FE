@@ -74,7 +74,7 @@ const Main = () => {
                 </div>
             </div>
             <div className={style.Section3}>
-                <div className={style.title}><MdOutlineFastfood /> 오늘의 식사</div>
+                <div className={style.title}><MdOutlineFastfood /> 식사 기록</div>
                 <div className={style.Food_container}>
                     <img src={"/imgs/foodsample1.png"} width="200" height="200"  style={{ borderRadius: '15px' }}/>
                     <ul className={style.todaymeal_container}>
