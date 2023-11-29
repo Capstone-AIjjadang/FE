@@ -7,11 +7,13 @@ import My from './components/My';
 import Graph from './components/Graph';
 import CameraAnalysis from './components/CameraAnalysis';
 import TextAnalysis from './components/TextAnalysis';
+import Login from './components/Login';
 import './App.css';
 
 function App() {
   const location = useLocation();
-  const HideNavigator = location.pathname === "/camera";
+  const HideNavigator = location.pathname === "/camera" || location.pathname === "/Login" || location.pathname === "/camera/analysis";
+
 
   return (
     <div className='All-container'>
@@ -23,7 +25,9 @@ function App() {
         <Route path="/camera/textanalysis" element={<TextAnalysis />} />
         <Route path="/Graph" element={<Graph />} />
         <Route path="/My" element={<My />} />
+        <Route path="/Login" element={<Login />} />
       </Routes>
+
       {HideNavigator ? '' : <Navigator />}
     </div>
   );

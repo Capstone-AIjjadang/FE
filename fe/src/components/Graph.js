@@ -35,6 +35,8 @@ const Graph = () => {
                 <img src={"/imgs/Logo.png"} height="30px" />
             </div>
 
+            
+
             <div className={style.center_container}>
                 {buttonList.map((button, index) => (
                     <button

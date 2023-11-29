@@ -1,6 +1,7 @@
 .container {
     background-color: white;
     width: 60vw;
+    padding-bottom : 70px;
 }
 
 .header {

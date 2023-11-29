@@ -90,11 +90,34 @@
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
+    margin-left: 1%;
+}
+
+.logout {
+    height: 56px;
+    width: 156px;
+    border-radius: 30px;
+
+    background-color: #6C95EC;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    
+    flex-shrink: 0;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: bold;
+    margin-right: 1%;
 }
 
 .edit_profile:hover {
     background-color: #1c6ca1;
   }
+
+.logout:hover {
+    background-color: #1c6ca1;
+}
 
 
 .write_foodname input {
