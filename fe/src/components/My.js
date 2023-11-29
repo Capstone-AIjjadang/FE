@@ -89,6 +89,10 @@ const My = () => {
             </div>
 
             <div className={style.center_container}>
+                <button className={style.logout}>
+                    로그아웃
+                </button>
+
                 {isAVisible && (
                     <button onClick={toggleButtons} className={style.edit_profile}>
                         정보 수정
