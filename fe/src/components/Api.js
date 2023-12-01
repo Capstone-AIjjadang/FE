@@ -5,6 +5,18 @@ const api = axios.create({
     withCredentials: true
 });
 
-export const go = () => {
+export const store_memberinfo = () => {
+    return api.post("/submit/");
+}
+export const store_nutri = () => {
+    return api.post("/submit_nutrition_info/");
+}
+export const memberinfo = () => {
     return api.get("/fetch_data/");
+}
+export const nutri = () => {
+    return api.get("/fetch_nutrition_info/");
+}
+export const foodAi = () => {
+    return api.post("/process_image/");
 }

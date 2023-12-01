@@ -3,20 +3,9 @@ import '../css/Camera.css';
 import { useState } from 'react';
 import Webcam from "react-webcam";
 import { Link, useNavigate } from 'react-router-dom';
-import { go } from "./Api";
 
 
 const Camera = () => {
-    const [res, setRes] = useState();
-    useEffect(() => {
-        getData();
-    }, []);
-
-    const getData = async () => {
-        const response = await go();
-        setRes(response);
-    };
-    console.log(res);
     const fileInput = React.useRef(null);
     const webcamRef = React.useRef(null);
 

@@ -1,13 +1,24 @@
 import React from 'react';
 import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
+import { nutri } from './Api';
 
 const CameraAnalysis = () => {
     const [rating, setRating] = React.useState(0);
     const handleRatingChange = (value) => {
         setRating(value);
     };
+    const [nut, setNutri] = React.useState();
+    React.useEffect(() => {
+        getData();
+    }, []);
 
+    const getData = async () => {
+        const response = await nutri();
+        setNutri(response);
+    };
+    console.log(nut?.data);
+    const N = nut?.data || [];
     return (
         <div className={style.container}>
             <div className={style.header}>
@@ -19,36 +30,36 @@ const CameraAnalysis = () => {
                     <div className={style.foodname}>인식된 음식이름</div>
                 </div>
                 <div className={style.analysis_container}>
-                    
-                    <div className={style.analysis}>
+
+                    {N[N.length - 1] && <div className={style.analysis}>
                         <div className={style.sec1}>
                             <li>총 칼로리 <span>00Kcal</span>
-                                <LinearProgress variant="determinate" value={70} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                                <LinearProgress variant="determinate" value={N[N.length - 1].calories} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                             <br /><br /><br />
                             <li>탄수화물<span>00g</span>
-                                <LinearProgress variant="determinate" value={50} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                                <LinearProgress variant="determinate" value={N[N.length - 1].carbohydrates} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
                         <div className={style.sec2}>
                             <li>나트륨<span>00g</span>
-                                <LinearProgress variant="determinate" value={100} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                                <LinearProgress variant="determinate" value={N[N.length - 1].sodium} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                             <br /><br /><br />
                             <li>단백질<span>00g</span>
-                                <LinearProgress variant="determinate" value={30} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                                <LinearProgress variant="determinate" value={N[N.length - 1].protein} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
                         <div className={style.sec3}>
                             <li>지방<span>00g</span>
-                                <LinearProgress variant="determinate" value={50} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                                <LinearProgress variant="determinate" value={10} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                             <br /><br /><br />
-                            <li>칼슘<span>00g</span>
-                                <LinearProgress variant="determinate" value={50} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>칼륨<span>00g</span>
+                                <LinearProgress variant="determinate" value={N[N.length - 1].potassium} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
-                    </div>
+                    </div>}
                 </div>
                 <div className={style.info_container}>
                     <div className={style.title}>
