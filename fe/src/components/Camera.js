@@ -3,7 +3,7 @@ import '../css/Camera.css';
 import { useState } from 'react';
 import Webcam from "react-webcam";
 import { Link, useNavigate } from 'react-router-dom';
-
+import { foodAi } from './Api';
 
 const Camera = () => {
     const fileInput = React.useRef(null);
@@ -21,15 +21,6 @@ const Camera = () => {
         e.preventDefault();
         console.log('갤러리 버튼 클릭');
         fileInput.current.click();
-        // if (Nowstate === 'text') {
-        //     console.log('Navigating to /textanalysis');
-        //     history('/camera/textanalysis');
-        // }
-
-        // else if (Nowstate === 'food') {
-        //     console.log('Navigating to');
-        //     history('/camera/analysis');
-        // }
     };
 
     const handleImageSelect = (e) => {
@@ -41,7 +32,7 @@ const Camera = () => {
     };
 
     //webcam 사진캡쳐 부분
-    const captureImage = (e) => {
+    const captureImage = async (e) => {
         e.preventDefault();
         const imageSrc = webcamRef.current.getScreenshot();
 
@@ -54,10 +45,10 @@ const Camera = () => {
             ia[i] = byteString.charCodeAt(i);
         }
         const blob = new Blob([ab], { type: mimeString });
-
+        const jpegFile = new File([blob], 'image.jpg', { type: 'image/jpeg' });
         // FormData 객체를 생성하고 Blob을 추가
         const formData = new FormData();
-        formData.append('file', blob, 'image.jpg');
+        formData.append('file', jpegFile);
 
         // 이제 formData에 JPEG 형식의 이미지가 포함되어 있습니다.
         formData.forEach((value, key) => {
@@ -65,15 +56,26 @@ const Camera = () => {
         });
         const imageUrl = URL.createObjectURL(blob);
         setCapturedImage(imageUrl);
+        console.log('??');
+        try {
+            console.log('???');
+            const R = foodAi(formData);
+            console.log('!!');
+            // 응답을 필요에 따라 처리합니다.
+            console.log(R.data);
+            console.log('!!!!');
+            // 응답에 따라 리다이렉트하려면 다음과 같이 수행할 수 있습니다:
+            if (Nowstate === 'text') {
+                console.log('텍스트 결과 분석 페이지로');
+                history('/camera/textanalysis');
+            } else if (Nowstate === 'food') {
+                console.log('음식 결과 분석 페이지로');
+                history('/camera/analysis');
+            }
 
-        if (Nowstate === 'text') {
-            console.log('텍스트결과분석페이지로');
-            history('/camera/textanalysis');
-        }
-
-        else if (Nowstate === 'food') {
-            console.log('음식결과분석페이지로');
-            history('/camera/analysis');
+        } catch (error) {
+            console.error('이미지 업로드 오류:', error);
+            // 필요에 따라 오류를 처리합니다.
         }
 
     };
@@ -81,18 +83,11 @@ const Camera = () => {
         setCapturedImage(null);
     };
 
-    //음식,성분표 토글버튼
-    // const [isActive, setIsActive] = useState(false);
-    // const buttonText = isActive ? '성분표' : '음식';
-    // const Nowstate = isActive ? 'text' : 'food';
-    // const history = useNavigate();
-
     const handleToggle = (e) => {
         setIsActive(!isActive);
     };
 
     return (
-        // 
         <div className='camera_container'>
             <Link to="/" className='GotoHome' />
             <div className='screen_container'>
@@ -111,7 +106,6 @@ const Camera = () => {
                         screenshotQuality={1}
                         minScreenshotWidth={1080}
                         minScreenshotHeight={720}
-                    // width={ }
                     />
                 )}
                 <div className='food_name'>

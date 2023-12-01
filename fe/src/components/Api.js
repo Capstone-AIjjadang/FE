@@ -17,6 +17,9 @@ export const memberinfo = () => {
 export const nutri = () => {
     return api.get("/fetch_nutrition_info/");
 }
-export const foodAi = () => {
-    return api.post("/process_image/");
+export const foodAi = (data) => {
+    return api.post("/process_image/", data);
+}
+export const result_foodAi = () => {
+    return api.get("/fetch_food_image_info/");
 }
