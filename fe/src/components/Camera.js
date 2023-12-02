@@ -65,6 +65,7 @@ const Camera = () => {
             console.log(R.data);
             console.log('!!!!');
             // 응답에 따라 리다이렉트하려면 다음과 같이 수행할 수 있습니다:
+<<<<<<< HEAD
             if (Nowstate === 'text') {
                 console.log('텍스트 결과 분석 페이지로');
                 history('/camera/textanalysis');
@@ -72,6 +73,15 @@ const Camera = () => {
                 console.log('음식 결과 분석 페이지로');
                 history('/camera/analysis');
             }
+=======
+            // if (Nowstate === 'text') {
+            //     console.log('텍스트 결과 분석 페이지로');
+            //     history('/camera/textanalysis');
+            // } else if (Nowstate === 'food') {
+            //     console.log('음식 결과 분석 페이지로');
+            //     history('/camera/analysis');
+            // }
+>>>>>>> f06b13d44c8afa5f8a4d54e2f898f6e758897957
 
         } catch (error) {
             console.error('이미지 업로드 오류:', error);
