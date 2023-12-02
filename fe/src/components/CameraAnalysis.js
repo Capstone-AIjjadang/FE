@@ -1,7 +1,7 @@
 import React from 'react';
 import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
-import { nutri } from './Api';
+import { result_foodAi } from './Api';
 
 const CameraAnalysis = () => {
     const [rating, setRating] = React.useState(0);
@@ -14,7 +14,7 @@ const CameraAnalysis = () => {
     }, []);
 
     const getData = async () => {
-        const response = await nutri();
+        const response = await result_foodAi();
         setNutri(response);
     };
     console.log(nut?.data);
@@ -25,38 +25,38 @@ const CameraAnalysis = () => {
                 <img src={"/imgs/Logo.png"} height="30px" />
             </div>
             <form className={style.form}>
-                <div className={style.screen_container}>
+                {N[N.length - 1] && <div className={style.screen_container}>
                     <div><img src={"/imgs/foodsample1.png"} height="250" /></div>
-                    <div className={style.foodname}>인식된 음식이름</div>
-                </div>
+                    <div className={style.foodname}>{N[N.length - 1].food_name}</div>
+                </div>}
                 <div className={style.analysis_container}>
 
                     {N[N.length - 1] && <div className={style.analysis}>
                         <div className={style.sec1}>
-                            <li>총 칼로리 <span>00Kcal</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].calories} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>총 칼로리 <span>{N[N.length - 1].food_cal}Kcal</span>
+                                <LinearProgress variant="determinate" value={N[N.length - 1].food_cal / 10} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                             <br /><br /><br />
-                            <li>탄수화물<span>00g</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].carbohydrates} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>탄수화물<span>{N[N.length - 1].food_carbs}g</span>
+                                <LinearProgress variant="determinate" value={N[N.length - 1].food_carbs} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
                         <div className={style.sec2}>
-                            <li>나트륨<span>00g</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].sodium} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>나트륨<span>{N[N.length - 1].food_nat}mg</span>
+                                <LinearProgress variant="determinate" value={N[N.length - 1].food_nat} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                             <br /><br /><br />
-                            <li>단백질<span>00g</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].protein} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>단백질<span>{N[N.length - 1].food_protein}g</span>
+                                <LinearProgress variant="determinate" value={N[N.length - 1].food_protein} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
                         <div className={style.sec3}>
-                            <li>지방<span>00g</span>
-                                <LinearProgress variant="determinate" value={10} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>지방<span>{N[N.length - 1].food_fat}g</span>
+                                <LinearProgress variant="determinate" value={N[N.length - 1].food_fat} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                             <br /><br /><br />
-                            <li>칼륨<span>00g</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].potassium} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>당류<span>{N[N.length - 1].food_sugar}g</span>
+                                <LinearProgress variant="determinate" value={N[N.length - 1].food_sugar} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
                     </div>}
