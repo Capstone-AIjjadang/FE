@@ -68,6 +68,16 @@
     font-size: 25px;
 }
 
+
+
+.User_editprofile {
+    color: black;
+    align-items: left;
+    flex-direction: column;
+    font-size: 22px;
+    line-height: 0.95;
+}
+
 .User_profile {
     color: black;
     align-items: left;
