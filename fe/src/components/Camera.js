@@ -3,7 +3,7 @@ import '../css/Camera.css';
 import { useState } from 'react';
 import Webcam from "react-webcam";
 import { Link, useNavigate } from 'react-router-dom';
-import { foodAi } from './Api';
+import { foodAi, ocrAi } from './Api';
 
 const Camera = () => {
     const fileInput = React.useRef(null);
@@ -59,17 +59,21 @@ const Camera = () => {
         console.log('??');
         try {
             console.log('???');
-            const R = foodAi(formData);
+            let R;
+            // const R = foodAi(formData);
             console.log('!!');
             // 응답을 필요에 따라 처리합니다.
-            console.log(R.data);
-            console.log('!!!!');
             if (Nowstate === 'text') {
-                console.log('텍스트 결과 분석 페이지로');
+                console.log('OCR');
+                R = await ocrAi(formData);
                 history('/camera/textanalysis');
+                console.log('텍스트 결과 분석 페이지로');
+                // console.log(R.data.value);
             } else if (Nowstate === 'food') {
-                console.log('음식 결과 분석 페이지로');
+                console.log('Food AI');
+                R = foodAi(formData);
                 history('/camera/analysis');
+                console.log('음식 결과 분석 페이지로');
             }
 
         } catch (error) {

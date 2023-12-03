@@ -23,3 +23,15 @@ export const foodAi = (data) => {
 export const result_foodAi = () => {
     return api.get("/fetch_food_image_info/");
 }
+export const ocrAi = (data) => {
+    return api.post("/OCRprocess_image", data);
+}
+export const result_ocrAi = () => {
+    return api.get("/fetch_textimage/");
+}
+export const updateUser = () => {
+    return api.put("/update_user/");
+}
+export const updateFoodinfo = () => {
+    return api.put("/update_FoodImageInfo/");
+}

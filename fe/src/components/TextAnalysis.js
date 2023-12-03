@@ -1,13 +1,24 @@
 import React from 'react';
 import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
+import { result_ocrAi } from "./Api";
 
 const TextAnalysis = () => {
     const [rating, setRating] = React.useState(0);
     const handleRatingChange = (value) => {
         setRating(value);
     };
+    const [text, setText] = React.useState();
+    React.useEffect(() => {
+        getData();
+    }, []);
 
+    const getData = async () => {
+        const response = await result_ocrAi();
+        setText(response);
+    };
+    console.log(text?.data);
+    const N = text?.data || [];
     return (
         <div className={style.container}>
             <div className={style.header}>
