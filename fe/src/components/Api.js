@@ -12,7 +12,7 @@ export const store_nutri = () => {
     return api.post("/submit_nutrition_info/");
 }
 export const memberinfo = () => {
-    return api.get("/fetch_data/");
+    return api.get("/fetch_user_join/");
 }
 export const nutri = () => {
     return api.get("/fetch_nutrition_info/");

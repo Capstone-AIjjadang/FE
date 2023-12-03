@@ -5,3 +5,36 @@
     flex-direction: column;
     align-items: center;
 }
+
+.login{
+    width: 260px;
+    height: 34px;
+    border-radius: 30px;
+    background: #3D61AD;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.loginfont{
+    width: 30px;
+    color: #FFF;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.idpw{
+    border-radius: 10px;
+    border: 0.5px solid #999;
+    background: #FFF;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.joinfont{
+    color: #3D61AD;
+    font-family: Pretendard;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}

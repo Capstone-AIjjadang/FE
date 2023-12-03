@@ -1,6 +1,5 @@
 import * as React from 'react';
 import style from '../css/Login.module.css';
-
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
@@ -39,37 +38,42 @@ export default function Login() {
                 </div>
 
                 <TextField
-                className="idpw"
-                margin="normal"
-                label="아이디"
-                required
-                fullWidth
-                name="email"
-                autoComplete="current-password"
-                vertical-align="bottom"
+                    margin="normal"
+                    label="아이디"
+                    required
+                    fullWidth
+                    name="email"
+                    autoComplete="current-password"
+                    style={{
+                    verticalAlign: 'bottom',
+                    borderRadius: '10px',  // border-radius 추가
+                    border: '0.5px solid #999',  // border 추가
+                    background: '#FFF',  // background 추가
+                    boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.25)'  // box-shadow 추가
+                    }}
                 />
 
                 <TextField
-                className="idpw"
-                margin="normal"
-                label="비밀번호"
-                type="password"
-                required
-                fullWidth
-                name="password"
-                autoComplete="current-password"
+                    label="비밀번호"
+                    required
+                    fullWidth
+                    name="email"
+                    autoComplete="current-password"
+                    style={{
+                    verticalAlign: 'bottom',
+                    borderRadius: '10px',  // border-radius 추가
+                    border: '0.5px solid #999',  // border 추가
+                    background: '#FFF',  // background 추가
+                    boxShadow: '0px 1px 4px 0px rgba(0, 0, 0, 0.25)'  // box-shadow 추가
+               }}
                 />
 
                 <Button
-                className="btn"
-                type="submit"
-                fullWidth
-                variant="contained"
-                height="34px"
+                className={style.login}
                 //mt는 위쪽과의 간격격
                 sx={{ mt: 3, mb: 2 }}
                 >
-                    <span className="font">로그인</span>
+                    {/* <span className={style.loginfont}>로그인</span> */}
                 </Button>
 
                 <Grid container>
@@ -77,7 +81,7 @@ export default function Login() {
                         <Link href="Sign_in.js" style={{ textDecoration: 'none' }}>
                         회원가입
                         </Link>
-                    </Grid>
+                    </Grid> 
 
                     <Grid item>
                         <Link to="/signUp" style={{ textDecoration: 'none' }}>
