@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import style from '../css/My.module.css';
 import { MdOutlineRecommend } from "react-icons/md";
@@ -10,7 +11,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { memberinfo } from './Api';
 
 const My = () => {
-
     const [userData, setUserData] = useState(null);
     const [formData, setFormData] = useState({
         name: "성헌아",
@@ -20,24 +20,24 @@ const My = () => {
         medical_history: "위피중독"
     });
 
-    //get
+    // get
+    const fetchData = async () => {
+        try {
+            // FastAPI 서버로 요청을 보냅니다.
+            const response = await axios.get('http://localhost:8000/fetch_user_join/');
+
+            // 서버로부터 받은 데이터를 state에 저장합니다.
+            setUserData(response.data);
+            console.log('Name:', response.data[0].name);
+        } catch (error) {
+            console.error('Error fetching user data:', error);
+        }
+    };
+
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // FastAPI 서버로 요청을 보냅니다.
-                const response = await axios.get('http://localhost:8000/fetch_user_join/');
-
-                // 서버로부터 받은 데이터를 state에 저장합니다.
-                setUserData(response.data);
-                console.log('Name:', response.data[0].name);
-            } catch (error) {
-                console.error('Error fetching user data:', error);
-            }
-        };
-
         // fetchData 함수를 호출하여 데이터를 가져옵니다.
         fetchData();
-    }, [])
+    }, []);
 
 
     // const [userInfo, setUserInfo] = useState({
@@ -54,13 +54,13 @@ const My = () => {
     const [isB2Visible, setB2Visible] = useState(false);
     const [isUserEditVisible, setUserEditVisible] = useState(false);
 
-    //put
+    // put
     const handleUpdateClick = async () => {
         if (isUserEditVisible) {
             try {
                 const formDataString = new URLSearchParams(formData).toString();
 
-                // 여기에서 서버로 데이터를 보내고자 하는 PUT 요청을 작성합니다.
+                // 서버로 데이터를 보내고자 하는 PUT 요청
                 const response = await axios.put('http://localhost:8000/update_user/', formDataString, {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
@@ -69,7 +69,9 @@ const My = () => {
 
                 if (response.status === 200) {
                     console.log('Data updated successfully:', response.data);
-                    // 필요에 따라 추가적인 처리를 할 수 있습니다.
+
+                    // 업데이트 후에 서버에서 새로운 정보를 가져오기
+                    fetchData();
                 } else {
                     console.error('Failed to update data:', response.statusText);
                 }
@@ -210,28 +212,32 @@ const My = () => {
 
             <div className={style.center_container}>
                 {isA1Visible && (
-                    <button onClick={toggleButtons1} className={style.logout}>
-                        로그인
-                    </button>
-                )}
-                {isB1Visible && (
-                    <button onClick={toggleButtons1} className={style.logout}>
-                        로그아웃
-                    </button>
-                )}
 
-                {isA2Visible && (
-                    <button onClick={toggleButtons2} className={style.edit_profile}>
-                        정보 수정
-                    </button>
+                    <Link to="/Login" className={style.login}>
+                        <button onClick={toggleButtons1} className={style.logout}>
+                            로그인
+                        </button>
+                    </Link>
+                
                 )}
-                {isB2Visible && (
-                    <button onClick={toggleButtons2} className={style.edit_profile}>
-                        확인
-                    </button>
-                )}
-            </div>
+            {isB1Visible && (
+                <button onClick={toggleButtons1} className={style.logout}>
+                    로그아웃
+                </button>
+            )}
+
+            {isA2Visible && (
+                <button onClick={toggleButtons2} className={style.edit_profile}>
+                    정보 수정
+                </button>
+            )}
+            {isB2Visible && (
+                <button onClick={toggleButtons2} className={style.edit_profile}>
+                    확인
+                </button>
+            )}
         </div>
+        </div >
     );
 };
 
