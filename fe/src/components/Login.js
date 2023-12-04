@@ -24,8 +24,8 @@ export default function Login() {
     <div className={style.container}>
         <Container component="main" maxWidth="xs">
             <Box
-                sx={{
-                marginTop: 8,
+                sx={{   
+                marginTop: '250px',
                 display: 'flex',
                 flexDirection: 'column',
                 alignItems: 'center',
@@ -33,7 +33,7 @@ export default function Login() {
             >
                 <div className="Card1">
                     <div className="logo_image">
-                        <img src={"/imgs/Logo.png"} height="30px" />
+                        <img src={"/imgs/Logo.png"} height="30px"/>
                     </div>
                 </div>
 
@@ -73,7 +73,7 @@ export default function Login() {
                 //mt는 위쪽과의 간격격
                 sx={{ mt: 3, mb: 2 }}
                 >
-                    {/* <span className={style.loginfont}>로그인</span> */}
+                    <span className={style.loginfont}>로그인</span>
                 </Button>
 
                 <Grid container>

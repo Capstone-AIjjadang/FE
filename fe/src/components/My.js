@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 import style from '../css/My.module.css';
 import { MdOutlineRecommend } from "react-icons/md";
@@ -10,7 +11,6 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { memberinfo } from './Api';
 
 const My = () => {
-
     const [userData, setUserData] = useState(null);
     const [formData, setFormData] = useState({
         name: "성헌아",
@@ -212,28 +212,32 @@ const My = () => {
 
             <div className={style.center_container}>
                 {isA1Visible && (
-                    <button onClick={toggleButtons1} className={style.logout}>
-                        로그인
-                    </button>
-                )}
-                {isB1Visible && (
-                    <button onClick={toggleButtons1} className={style.logout}>
-                        로그아웃
-                    </button>
-                )}
 
-                {isA2Visible && (
-                    <button onClick={toggleButtons2} className={style.edit_profile}>
-                        정보 수정
-                    </button>
+                    <Link to="/Login" className={style.login}>
+                        <button onClick={toggleButtons1} className={style.logout}>
+                            로그인
+                        </button>
+                    </Link>
+                
                 )}
-                {isB2Visible && (
-                    <button onClick={toggleButtons2} className={style.edit_profile}>
-                        확인
-                    </button>
-                )}
-            </div>
+            {isB1Visible && (
+                <button onClick={toggleButtons1} className={style.logout}>
+                    로그아웃
+                </button>
+            )}
+
+            {isA2Visible && (
+                <button onClick={toggleButtons2} className={style.edit_profile}>
+                    정보 수정
+                </button>
+            )}
+            {isB2Visible && (
+                <button onClick={toggleButtons2} className={style.edit_profile}>
+                    확인
+                </button>
+            )}
         </div>
+        </div >
     );
 };
 
