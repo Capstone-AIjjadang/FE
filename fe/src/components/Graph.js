@@ -6,7 +6,8 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'r
 
 const Graph = () => {
 
-    const buttonList = ['탄수화물', '단백질', '지방', '단백질', '나트륨', '칼슘'];
+    const buttonList = ['탄수화물', '단백질', '지방', '나트륨', '칼슘'];
+    const nut_index = 0;
 
     const [currentValueIndex, setCurrentValueIndex] = useState(0);
 
@@ -15,13 +16,13 @@ const Graph = () => {
     };
 
     const data = [
-        { day: '월', value: 500 },
-        { day: '화', value: 300 },
-        { day: '수', value: 700 },
-        { day: '목', value: 200 },
-        { day: '금', value: 600 },
-        { day: '토', value: 800 },
-        { day: '일', value: 400 },
+        { day: '월', value1: 230, value2: 30, value3: 30, value4: 2.5, value5: 0.5 },
+        { day: '화', value1: 140, value2: 40, value3: 49, value4: 3.1, value5: 0.8 },
+        { day: '수', value1: 250, value2: 66, value3: 66, value4: 1.9, value5: 1.3 },
+        { day: '목', value1: 370, value2: 92, value3: 35, value4: 2.3, value5: 1.2 },
+        { day: '금', value1: 120, value2: 42, value3: 40, value4: 1.2, value5: 0.9 },
+        { day: '토', value1: 250, value2: 29, value3: 51, value4: 4.5, value5: 0.2 },
+        { day: '일', value1: 210, value2: 31, value3: 68, value4: 3.4, value5: 0.4 },
     ];
 
     const handleEditClick = () => {
@@ -38,18 +39,18 @@ const Graph = () => {
             
 
             <div className={style.center_container}>
-                {buttonList.map((button, index) => (
+                {buttonList.map((button, nut_index) => (
                     <button
                         key={button}
                         onClick={toggleButton}
                         className={style.btn_style}
-                        style={{ display: index === currentValueIndex ? 'inline-block' : 'none' }}
+                        style={{ display: nut_index === currentValueIndex ? 'inline-block' : 'none' }}        
                     >
                         {button}
                     </button>
                 ))}
             </div>
-
+            
             <div className={style.center_container}>
                 <LineChart
                     width={650}
@@ -62,7 +63,7 @@ const Graph = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey="value" name={buttonList[currentValueIndex]} stroke="#8884d8" activeDot={{ r: 8 }} />
+                    <Line type="monotone" dataKey={"value"+String(nut_index)} name={buttonList[currentValueIndex]} stroke="#8884d8" activeDot={{ r: 8 }} />
                 </LineChart>
             </div>
 
