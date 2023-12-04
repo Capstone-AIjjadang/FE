@@ -3,13 +3,10 @@ import style from '../css/Graph.module.css';
 import { MdOutlineRecommend } from "react-icons/md";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
-
 const Graph = () => {
-
     const buttonList = ['탄수화물', '단백질', '지방', '나트륨', '칼슘'];
-    const nut_index = 0;
-
     const [currentValueIndex, setCurrentValueIndex] = useState(0);
+    const resultString = `value${currentValueIndex + 1}`;
 
     const toggleButton = () => {
         setCurrentValueIndex((prevIndex) => (prevIndex + 1) % buttonList.length);
@@ -36,21 +33,19 @@ const Graph = () => {
                 <img src={"/imgs/Logo.png"} height="30px" />
             </div>
 
-            
-
             <div className={style.center_container}>
                 {buttonList.map((button, nut_index) => (
                     <button
                         key={button}
                         onClick={toggleButton}
                         className={style.btn_style}
-                        style={{ display: nut_index === currentValueIndex ? 'inline-block' : 'none' }}        
+                        style={{ display: nut_index === currentValueIndex ? 'inline-block' : 'none' }}
                     >
                         {button}
                     </button>
                 ))}
             </div>
-            
+
             <div className={style.center_container}>
                 <LineChart
                     width={650}
@@ -63,13 +58,11 @@ const Graph = () => {
                     <YAxis />
                     <Tooltip />
                     <Legend />
-                    <Line type="monotone" dataKey={"value"+String(nut_index)} name={buttonList[currentValueIndex]} stroke="#8884d8" activeDot={{ r: 8 }} />
+                    <Line type="monotone" dataKey={resultString} name={buttonList[currentValueIndex]} stroke="#8884d8" activeDot={{ r: 8 }} />
                 </LineChart>
             </div>
-
-
         </div>
     );
 };
 
-export default Graph;   
+export default Graph;
