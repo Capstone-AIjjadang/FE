@@ -9,7 +9,9 @@ const FoodRecommend = () => {
     // get
     const fetchData = async () => {
         try {
-            // FastAPI 서버로 요청을 보냅니다.
+            // FastAPI 서버로 요청을 보냅니다. today_sum/recomend_intake/recomend_food
+            const response1 = await axios.get('http://localhost:8000/today_sum_food/');
+            const response2 = await axios.get('http://localhost:8000/recommended_intake/');
             const response = await axios.get('http://localhost:8000/recommended_food/');
 
             // 서버로부터 받은 데이터를 state에 저장합니다.
