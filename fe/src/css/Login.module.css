@@ -11,8 +11,9 @@
     flex-shrink: 0;
     width:100%;
     border-radius: 30px;
-    background: #3D61AD;
+    /* background: #3D61AD; */
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+    
 }
 
 .loginfont{
