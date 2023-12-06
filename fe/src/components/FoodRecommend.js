@@ -5,6 +5,8 @@ import { MdOutlineAlarmOn, MdOutlineRecommend } from "react-icons/md";
 import { CircularProgress, CircularProgressWithLabel } from '@mui/material';
 
 const FoodRecommend = () => {
+    const [todayData, settodayData] = useState(null);
+    const [intakeyData, setintakeData] = useState(null);
     const [userData, setUserData] = useState(null);
     // get
     const fetchData = async () => {
@@ -15,7 +17,10 @@ const FoodRecommend = () => {
             const response = await axios.get('http://localhost:8000/recommended_food/');
 
             // 서버로부터 받은 데이터를 state에 저장합니다.
+            settodayData(response1.data);
+            setintakeData(response2.data);
             setUserData(response.data);
+            console.log('Total_food_nat:', response1.data.total_food_data.Total_food_nat);
             console.log('Name:', response.data[0].name1);
         } catch (error) {
             console.error('Error fetching user data:', error);
@@ -38,12 +43,34 @@ const FoodRecommend = () => {
                     <div className={style.IngredientAlarm_container}>
                         <div className={style.title}>
                             나트륨 경보기
-                            <span >00/00 g</span>
+                            <span style={{ marginLeft: '7px' }}>{todayData && todayData.total_food_data ? todayData.total_food_data.Total_food_nat : "로딩 중..."}/2300mg</span>
                         </div>
                         <div className={style.CircularGraph}>
-                            <CircularProgress variant="determinate" value={75} size='80px' thickness={8} />
+                            {todayData && todayData.total_food_data ? (
+                                <CircularProgress
+                                    variant="determinate"
+                                    value={todayData.total_food_data.Total_food_nat / 2300 * 100}
+                                    size='80px'
+                                    thickness={8}
+                                    style={{
+                                        color: todayData.total_food_data.Total_food_nat / 2300 * 100 >= 70
+                                            ? 'red'
+                                            : todayData.total_food_data.Total_food_nat / 2300 * 100 >= 30
+                                                ? 'blue'
+                                                : 'green'
+                                    }}
+                                />
+                            ) : null}
                         </div>
-                        <span className={style.Alarm_direction}>
+                        <span className={style.Alarm_direction} style={{
+                            color: todayData && todayData.total_food_data
+                                ? todayData.total_food_data.Total_food_nat / 2300 * 100 >= 70
+                                    ? 'red'
+                                    : todayData.total_food_data.Total_food_nat / 2300 * 100 >= 30
+                                        ? 'blue'
+                                        : 'green'
+                                : 'black' // 설정할 기본 색상
+                        }}>
                             오늘 나트륨 섭취량이 위험합니다.
                         </span>
                     </div>
