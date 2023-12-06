@@ -2,11 +2,13 @@ import React from 'react';
 import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
 import { result_ocrAi } from "./Api";
-
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 const TextAnalysis = () => {
     const [rating, setRating] = React.useState(0);
     const [text, setText] = React.useState();
-
+    const history = useNavigate();
+    const [input_foodname, setinput_foodname] = React.useState('');
     const handleRatingChange = (value) => {
         setRating(value);
     };
@@ -21,7 +23,29 @@ const TextAnalysis = () => {
     // console.log(text?.data);
     const Text = text?.data.TextImageInfo || [];
     const Image = text?.data.OCRImageInfo || [];
+    const handleRecordClick = async (e) => {
+        e.preventDefault();
+        console.log(rating);
 
+        try {
+            // 서버로 보낼 데이터
+            const postData = new URLSearchParams();
+            postData.append('amount_eaten', rating.toString()); // 문자열로 변환하여 추가
+            postData.append('name', input_foodname); // 문자열로 변환하여 추가
+
+            // Axios를 사용하여 POST 요청
+            const response = await axios.post('http://localhost:8000/total_food_result/', postData);
+
+            // 서버 응답 처리
+            console.log('서버 응답:', response.data);
+            history('/');
+            // 여기에서 필요한 추가 처리를 수행할 수 있습니다.
+        } catch (error) {
+            // 에러 응답 콘솔 출력
+            console.error('서버 통신 오류:', error);
+            console.log('에러 응답 데이터:', error.response.data);
+        }
+    };
     return (
         <div className={style.container}>
             <div className={style.header}>
@@ -89,12 +113,14 @@ const TextAnalysis = () => {
                             무슨 음식인가요?
                         </div>
                         <div className={style.write_foodname}>
-                            <input type='text' placeholder='음식 이름을 적어주세요' />
+                            <input type='text' placeholder='음식 이름을 적어주세요'
+                                value={input_foodname}
+                                onChange={(e) => setinput_foodname(e.target.value)} />
                         </div>
                     </div>
                 </div>
                 <div className={style.btn_container}>
-                    <button className={style.btn_record}>기록하기</button>
+                    <button className={style.btn_record} onClick={handleRecordClick}>기록하기</button>
                 </div>
             </form>
         </div>

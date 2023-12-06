@@ -27,8 +27,8 @@ const CameraAnalysis = () => {
     const N = nut?.data || [];
 
     const handleRecordClick = async (e) => {
-         e.preventDefault();
-         console.log(rating);
+        e.preventDefault();
+        console.log(rating);
 
         try {
             // 서버로 보낼 데이터
