@@ -154,6 +154,7 @@ const My = () => {
                                     variant='standard'
                                     value={formData.weight}
                                     onChange={(e) => handleChange('weight', e.target.value)}
+                                    style={{ marginBottom: '15px' }}
                                 />
                                 <TextField // input에 해당하는 태그
                                     required
@@ -164,8 +165,9 @@ const My = () => {
                                     variant='standard'
                                     value={formData.height}
                                     onChange={(e) => handleChange('height', e.target.value)}
+                                    style={{ marginBottom: '15px' }}
                                 />
-                                <Box sx={{ minWidth: 120 }}>
+                                <Box sx={{ minWidth: 120, marginBottom: '15px' }}>
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">성별</InputLabel>
                                         <Select
@@ -180,7 +182,7 @@ const My = () => {
                                         </Select>
                                     </FormControl>
                                 </Box>
-                                <Box sx={{ minWidth: 120 }}>
+                                <Box sx={{ minWidth: 120, marginBottom: '15px' }}>
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">병력</InputLabel>
                                         <Select

@@ -40,6 +40,7 @@ export default function Login() {
 
                     <TextField
                         margin="normal"
+                        marginBottom="4px"
                         label="아이디"
                         required
                         fullWidth
@@ -88,7 +89,7 @@ export default function Login() {
 
                     <Grid container>
                         <Grid item xs>
-                            <Link to="/sign_in" style={{ textDecoration: 'none' }}>
+                            <Link to="/join" style={{ textDecoration: 'none' }}>
                                 회원가입
                             </Link>
                         </Grid>

@@ -8,6 +8,7 @@ import Graph from './components/Graph';
 import CameraAnalysis from './components/CameraAnalysis';
 import TextAnalysis from './components/TextAnalysis';
 import Login from './components/Login';
+import Join from './components/Join';
 import './App.css';
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/Graph" element={<Graph />} />
         <Route path="/My" element={<My />} />
         <Route path="/Login" element={<Login />} />
+        <Route path="/Join" element={<Join />} />
       </Routes>
 
       {HideNavigator ? '' : <Navigator />}
