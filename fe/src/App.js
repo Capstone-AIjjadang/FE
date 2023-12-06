@@ -13,7 +13,7 @@ import './App.css';
 
 function App() {
   const location = useLocation();
-  const HideNavigator = location.pathname === "/camera" || location.pathname === "/Login" || location.pathname === "/camera/analysis";
+  const HideNavigator = location.pathname === "/camera" || location.pathname === "/Login"|| location.pathname === "/Join" || location.pathname === "/camera/analysis";
 
 
   return (

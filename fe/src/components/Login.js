@@ -22,7 +22,7 @@ export default function Login() {
 
     return (
         <div className={style.container}>
-            <Link to="/" className='GotoHome' />
+            <Link to="/My" className='GotoHome' />
             <Container component="main" maxWidth="xs">
                 <Box
                     sx={{
@@ -89,7 +89,7 @@ export default function Login() {
 
                     <Grid container>
                         <Grid item xs>
-                            <Link to="/join" style={{ textDecoration: 'none' }}>
+                            <Link to="/Join" style={{ textDecoration: 'none' }}>
                                 회원가입
                             </Link>
                         </Grid>

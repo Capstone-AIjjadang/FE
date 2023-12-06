@@ -13,18 +13,17 @@ import { memberinfo } from './Api';
 const My = () => {
     const [userData, setUserData] = useState(null);
     const [formData, setFormData] = useState({
-        name: "성헌아",
-        weight: 1002,
-        height: 19021,
-        gender: "21",
-        medical_history: "위피중독"
+        weight: null,
+        height: null,
+        gender: null,
+        medical_history: null
     });
 
     // get
     const fetchData = async () => {
         try {
             // FastAPI 서버로 요청을 보냅니다.
-            const response = await axios.get('http://localhost:8000/fetch_user_join/');
+            const response = await axios.get('http://localhost:8000/user_info/');
 
             // 서버로부터 받은 데이터를 state에 저장합니다.
             setUserData(response.data);
@@ -61,7 +60,7 @@ const My = () => {
                 const formDataString = new URLSearchParams(formData).toString();
 
                 // 서버로 데이터를 보내고자 하는 PUT 요청
-                const response = await axios.put('http://localhost:8000/update_user/', formDataString, {
+                const response = await axios.put('http://localhost:8000/user_update/', formDataString, {
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded',
                     },
@@ -177,8 +176,8 @@ const My = () => {
                                             label="성별"
                                             onChange={(e) => handleChange('gender', e.target.value)}
                                         >
-                                            <MenuItem value={1}>남자</MenuItem>
-                                            <MenuItem value={0}>여자</MenuItem>
+                                            <MenuItem value={"남자"}>남자</MenuItem>
+                                            <MenuItem value={"여자"}>여자</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Box>
@@ -192,9 +191,9 @@ const My = () => {
                                             label="병력"
                                             onChange={(e) => handleChange('medical_history', e.target.value)}
                                         >
-                                            <MenuItem value={0}>없음</MenuItem>
-                                            <MenuItem value={1}>고혈압</MenuItem>
-                                            <MenuItem value={2}>당뇨</MenuItem>
+                                            <MenuItem value={"없음"}>없음</MenuItem>
+                                            <MenuItem value={"고혈압"}>고혈압</MenuItem>
+                                            <MenuItem value={"당뇨"}>당뇨</MenuItem>
                                         </Select>
                                     </FormControl>
                                 </Box>
@@ -220,25 +219,25 @@ const My = () => {
                             로그인
                         </button>
                     </Link>
-                
-                )}
-            {isB1Visible && (
-                <button onClick={toggleButtons1} className={style.logout}>
-                    로그아웃
-                </button>
-            )}
 
-            {isA2Visible && (
-                <button onClick={toggleButtons2} className={style.edit_profile}>
-                    정보 수정
-                </button>
-            )}
-            {isB2Visible && (
-                <button onClick={toggleButtons2} className={style.edit_profile}>
-                    확인
-                </button>
-            )}
-        </div>
+                )}
+                {isB1Visible && (
+                    <button onClick={toggleButtons1} className={style.logout}>
+                        로그아웃
+                    </button>
+                )}
+
+                {isA2Visible && (
+                    <button onClick={toggleButtons2} className={style.edit_profile}>
+                        정보 수정
+                    </button>
+                )}
+                {isB2Visible && (
+                    <button onClick={toggleButtons2} className={style.edit_profile}>
+                        확인
+                    </button>
+                )}
+            </div>
         </div >
     );
 };

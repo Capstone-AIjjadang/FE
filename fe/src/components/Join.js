@@ -5,7 +5,6 @@ import style from '../css/Join.module.css';
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
-import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import MenuItem from '@mui/material/MenuItem';
@@ -35,7 +34,7 @@ const Registration = () => {
 
     return (
         <div className={style.container}>
-            <Link to="/" className="GotoHome" />
+            <Link to="/Login" className="GotoHome" />
 
             <Container component="main" maxWidth="xs">
                 <Box
