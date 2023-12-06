@@ -18,13 +18,13 @@ export const nutri = () => {
     return api.get("/fetch_nutrition_info/");
 }
 export const foodAi = (data) => {
-    return api.post("/process_image/", data);
+    return api.post("/process_foodimage/", data);
 }
 export const result_foodAi = () => {
-    return api.get("/fetch_food_image_info/");
+    return api.get("/food_image_info/");
 }
 export const ocrAi = (data) => {
-    return api.post("/OCRprocess_image", data);
+    return api.post("/process_OCRimage", data);
 }
 export const result_ocrAi = () => {
     return api.get("/fetch_textimage/");
@@ -33,5 +33,5 @@ export const updateUser = () => {
     return api.put("/update_user/");
 }
 export const updateFoodinfo = () => {
-    return api.put("/update_FoodImageInfo/");
+    return api.post("/total_food_result/");
 }
