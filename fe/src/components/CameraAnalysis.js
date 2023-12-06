@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
 import { result_foodAi, updateFoodinfo } from './Api';
@@ -6,11 +7,13 @@ import { useNavigate } from 'react-router-dom';
 
 const CameraAnalysis = () => {
     const [rating, setRating] = React.useState(0);
+    const [amountEaten, setAmountEaten] = React.useState(0.5); // 초기값 설정
     const history = useNavigate();
 
     const handleRatingChange = (value) => {
         setRating(value);
     };
+
     const [nut, setNutri] = React.useState();
     React.useEffect(() => {
         getData();
@@ -24,23 +27,28 @@ const CameraAnalysis = () => {
     const N = nut?.data || [];
 
     const handleRecordClick = async (e) => {
-        e.preventDefault();
-        // 보낼 데이터를 포함하는 객체 생성
-        const postData = {
-            amount_eaten: rating
-        };
+         e.preventDefault();
+         console.log(rating);
+
         try {
-            // updateFoodinfo API를 사용하여 서버에 데이터 전송
-            const response = await updateFoodinfo(rating);
-            console.log(response.data);  // 필요한대로 응답 처리
-            console.log("성공");  // 필요한대로 응답 처리
-            history('/camera');
+            // 서버로 보낼 데이터
+            const postData = new URLSearchParams();
+            postData.append('amount_eaten', rating.toString()); // 문자열로 변환하여 추가
+
+            // Axios를 사용하여 POST 요청
+            const response = await axios.post('http://localhost:8000/total_food_result/', postData);
+
+            // 서버 응답 처리
+            console.log('서버 응답:', response.data);
+            history('/');
+            // 여기에서 필요한 추가 처리를 수행할 수 있습니다.
         } catch (error) {
-            console.log(rating);
-            console.error('음식 정보 업데이트 오류:', error);
+            // 에러 응답 콘솔 출력
+            console.error('서버 통신 오류:', error);
+            console.log('에러 응답 데이터:', error.response.data);
         }
-        // history('/camera');
     };
+
     return (
         <div className={style.container}>
             <div className={style.header}>
@@ -52,7 +60,6 @@ const CameraAnalysis = () => {
                     <div className={style.foodname}>{N[N.length - 1].food_name}</div>
                 </div>}
                 <div className={style.analysis_container}>
-
                     {N[N.length - 1] && <div className={style.analysis}>
                         <div className={style.sec1}>
                             <li>총 칼로리 <span>{N[N.length - 1].food_cal}Kcal</span>
