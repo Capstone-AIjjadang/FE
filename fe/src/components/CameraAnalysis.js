@@ -1,10 +1,13 @@
 import React from 'react';
 import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
-import { result_foodAi } from './Api';
+import { result_foodAi, updateFoodinfo } from './Api';
+import { useNavigate } from 'react-router-dom';
 
 const CameraAnalysis = () => {
     const [rating, setRating] = React.useState(0);
+    const history = useNavigate();
+
     const handleRatingChange = (value) => {
         setRating(value);
     };
@@ -19,6 +22,25 @@ const CameraAnalysis = () => {
     };
     console.log(nut?.data);
     const N = nut?.data || [];
+
+    const handleRecordClick = async (e) => {
+        e.preventDefault();
+        // 보낼 데이터를 포함하는 객체 생성
+        const postData = {
+            amount_eaten: rating
+        };
+        try {
+            // updateFoodinfo API를 사용하여 서버에 데이터 전송
+            const response = await updateFoodinfo(rating);
+            console.log(response.data);  // 필요한대로 응답 처리
+            console.log("성공");  // 필요한대로 응답 처리
+            history('/camera');
+        } catch (error) {
+            console.log(rating);
+            console.error('음식 정보 업데이트 오류:', error);
+        }
+        // history('/camera');
+    };
     return (
         <div className={style.container}>
             <div className={style.header}>
@@ -54,10 +76,6 @@ const CameraAnalysis = () => {
                             <li>지방<span>{N[N.length - 1].food_fat}g</span>
                                 <LinearProgress variant="determinate" value={N[N.length - 1].food_fat} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
-                            <br /><br /><br />
-                            <li>당류<span>{N[N.length - 1].food_sugar}g</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].food_sugar} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
-                            </li>
                         </div>
                     </div>}
                 </div>
@@ -87,7 +105,7 @@ const CameraAnalysis = () => {
                     </div>
                 </div>
                 <div className={style.btn_container}>
-                    <button className={style.btn_record}>기록하기</button>
+                    <button className={style.btn_record} onClick={handleRecordClick}>기록하기</button>
                 </div>
             </form>
         </div>

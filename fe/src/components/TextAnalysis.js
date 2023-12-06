@@ -19,15 +19,9 @@ const TextAnalysis = () => {
         setText(response);
     };
     // console.log(text?.data);
-    const N = text?.data || [];
-    // console.log(N[N.length - 1].text_protein);
-    const parseValue = (value) => {
-        if (!value) {
-            return 0;
-        }
-        const match = value.match(/^(\d+(\.\d+)?)\s+/);
-        return match ? parseFloat(match[1]) : 0;
-    };
+    const Text = text?.data.TextImageInfo || [];
+    const Image = text?.data.OCRImageInfo || [];
+
     return (
         <div className={style.container}>
             <div className={style.header}>
@@ -35,35 +29,31 @@ const TextAnalysis = () => {
             </div>
             <form className={style.form}>
                 <div className={style.screen_container}>
-                    <div><img src={"/imgs/textsample.png"} height="300" /></div>
+                    {Image[Image.length - 1] && <div><img src={`data:image;base64,${Image[Image.length - 1].image}`} height="300" /></div>}
                 </div>
                 <div className={style.analysis_container}>
-                    {N[N.length - 1] && <div className={style.analysis}>
+                    {Text[Text.length - 1] && <div className={style.analysis}>
                         <div className={style.sec1}>
-                            <li>총 칼로리 <span>{parseValue(N[N.length - 1].text_cal)}Kcal</span>
-                                <LinearProgress variant="determinate" value={parseValue(N[N.length - 1].text_cal)} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>총 칼로리 <span>{Text[Text.length - 1].text_cal}Kcal</span>
+                                <LinearProgress variant="determinate" value={Text[Text.length - 1].text_cal} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                             <br /><br /><br />
-                            <li>탄수화물<span>{parseValue(N[N.length - 1].text_carbs)}g</span>
-                                <LinearProgress variant="determinate" value={parseValue(N[N.length - 1].text_carbs)} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>탄수화물<span>{Text[Text.length - 1].text_carbs}g</span>
+                                <LinearProgress variant="determinate" value={Text[Text.length - 1].text_carbs} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
                         <div className={style.sec2}>
-                            <li>나트륨<span>{parseValue(N[N.length - 1].text_nat)}mg</span>
-                                <LinearProgress variant="determinate" value={parseValue(N[N.length - 1].text_nat)} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>나트륨<span>{Text[Text.length - 1].text_nat}mg</span>
+                                <LinearProgress variant="determinate" value={Text[Text.length - 1].text_nat} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                             <br /><br /><br />
-                            <li>단백질<span>{parseValue(N[N.length - 1].text_protein)}g</span>
-                                <LinearProgress variant="determinate" value={parseValue(N[N.length - 1].text_protein)} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>단백질<span>{Text[Text.length - 1].text_protein}g</span>
+                                <LinearProgress variant="determinate" value={Text[Text.length - 1].text_protein} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
                         <div className={style.sec3}>
-                            <li>지방<span>{parseValue(N[N.length - 1].text_fat)}g</span>
-                                <LinearProgress variant="determinate" value={parseValue(N[N.length - 1].text_fat)} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
-                            </li>
-                            <br /><br /><br />
-                            <li>당류<span>30000000g</span>
-                                <LinearProgress variant="determinate" value={30} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>지방<span>{Text[Text.length - 1].text_fat}g</span>
+                                <LinearProgress variant="determinate" value={Text[Text.length - 1].text_fat} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
                     </div>}
