@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import style from '../css/Main.module.css';
 import { MdOutlineCalendarToday, MdOutlineToday, MdOutlineFastfood } from "react-icons/md";
 import { LinearProgress } from '@mui/material';
+import { allList, imageonly, todaysumfood } from './Api';
 
 const Main = () => {
     const num = 75;
@@ -10,20 +11,55 @@ const Main = () => {
 
     const [currentDate, setCurrentDate] = useState(new Date());
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      // 매 초마다 현재 날짜 업데이트
-      setCurrentDate(new Date());
-    }, 1000);
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            // 매 초마다 현재 날짜 업데이트
+            setCurrentDate(new Date());
+        }, 1000);
 
-    // 컴포넌트가 언마운트될 때 interval 정리
-    return () => clearInterval(intervalId);
-  }, []); // 빈 배열을 전달하여 컴포넌트가 처음 렌더링될 때만 실행
+        // 컴포넌트가 언마운트될 때 interval 정리
+        return () => clearInterval(intervalId);
+    }, []); // 빈 배열을 전달하여 컴포넌트가 처음 렌더링될 때만 실행
 
-  const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-  const formattedDate = currentDate.toLocaleDateString('ko-KR', options);
-  const dayOfWeek = currentDate.toLocaleDateString('ko-KR', { weekday: 'long' }); // 요일만 따로 저장
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    const formattedDate = currentDate.toLocaleDateString('ko-KR', options);
+    const dayOfWeek = currentDate.toLocaleDateString('ko-KR', { weekday: 'long' }); // 요일만 따로 저장
 
+    const [list, setList] = React.useState();
+    React.useEffect(() => {
+        getData();
+    }, []);
+
+    const getData = async () => {
+        const response = await allList();
+        setList(response);
+    };
+    const N = list?.data || [];
+    // console.log(N);
+
+    const [img, setImg] = React.useState();
+    React.useEffect(() => {
+        getData2();
+    }, []);
+
+    const getData2 = async () => {
+        const response = await imageonly();
+        setImg(response);
+    };
+    const I = img?.data.images || [];
+    console.log(I);
+
+    const [today, setToday] = React.useState();
+    React.useEffect(() => {
+        getData3();
+    }, []);
+
+    const getData3 = async () => {
+        const response = await todaysumfood();
+        setToday(response);
+    };
+    const T = today?.data.total_food_data || [];
+    // console.log(T);
 
 
     return (
@@ -46,37 +82,52 @@ const Main = () => {
             </div>
             <div className={style.Section2}>
                 <div className={style.title}><MdOutlineToday /> 일일섭취량</div>
-                <div className={style.Day_container}>
+                {T && <div className={style.Day_container}>
                     <div className={style.Kcal}>
-                        총 칼로리 <span>00Kcal</span>
-                        <LinearProgress variant="determinate" value={80} style={{ width: '300px', height: '50%', borderRadius: '10px' }} />
+                        총 칼로리 <span>{T.Total_food_cal}Kcal</span>
+                        <LinearProgress variant="determinate" value={T.Total_food_cal} style={{ width: '300px', height: '50%', borderRadius: '10px' }} />
                     </div>
                     <div className={style.sec1}>
                         <div>
-                            탄수화물 <span>00g</span>
-                            <LinearProgress variant="determinate" value={50} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
+                            탄수화물 <span>{T.Total_food_carbs}g</span>
+                            <LinearProgress variant="determinate" value={T.Total_food_carbs} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                         <div>
-                            지방 <span>00g</span>
-                            <LinearProgress variant="determinate" value={50} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
+                            지방 <span>{T.Total_food_fat}g</span>
+                            <LinearProgress variant="determinate" value={T.Total_food_fat} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                     </div>
                     <div className={style.sec2}>
                         <div>
-                            단백질 <span>00g</span>
-                            <LinearProgress variant="determinate" value={50} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
+                            단백질 <span>{T.Total_food_protein}g</span>
+                            <LinearProgress variant="determinate" value={T.Total_food_protein} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                         <div>
-                            칼슘 <span>00g</span>
-                            <LinearProgress variant="determinate" value={50} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
+                            나트륨 <span>{T.Total_food_nat}g</span>
+                            <LinearProgress variant="determinate" value={T.Total_food_nat} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                     </div>
-                </div>
+                </div>}
             </div>
             <div className={style.Section3}>
                 <div className={style.title}><MdOutlineFastfood /> 식사 기록</div>
-                <div className={style.Food_container}>
-                    <img src={"/imgs/foodsample1.png"} width="200" height="200"  style={{ borderRadius: '15px' }}/>
+                {N && N.map((meal, index) => (
+                    <div key={index} className={style.Food_container}>
+                        {I[index] && <img src={`data:image;base64,${I[index].image}`} height='auto' />}
+                        <ul className={style.todaymeal_container}>
+                            <div className={style.foodname} >{meal.Total_food_name} <span>{meal.Total_food_cal}Kcal</span></div>
+                            <div className={style.sec1}>
+                                <li>탄수화물 <span>{meal.Total_food_carbs}g</span></li>
+                                <li>지방 <span>{meal.Total_food_fat}g</span></li>
+                            </div>
+                            <div className={style.sec2}>
+                                <li>단백질 <span>{meal.Total_food_protein}g</span></li>
+                                <li>나트륨 <span>{meal.Total_food_nat}g</span></li>
+                            </div>
+                        </ul>
+                    </div>))}
+                {/* <div className={style.Food_container}>
+                    <img src={"/imgs/foodsample2.png"} width="200" height="200" style={{ borderRadius: '15px' }} />
                     <ul className={style.todaymeal_container}>
                         <div className={style.foodname} >음식이름 <span>00Kcal</span></div>
                         <div className={style.sec1}>
@@ -88,21 +139,7 @@ const Main = () => {
                             <li>칼슘 <span>00g</span></li>
                         </div>
                     </ul>
-                </div>
-                <div className={style.Food_container}>
-                    <img src={"/imgs/foodsample2.png"} width="200" height="200"  style={{ borderRadius: '15px' }}/>
-                    <ul className={style.todaymeal_container}>
-                        <div className={style.foodname} >음식이름 <span>00Kcal</span></div>
-                        <div className={style.sec1}>
-                            <li>탄수화물 <span>00g</span></li>
-                            <li>지방 <span>00g</span></li>
-                        </div>
-                        <div className={style.sec2}>
-                            <li>단백질 <span>00g</span></li>
-                            <li>칼슘 <span>00g</span></li>
-                        </div>
-                    </ul>
-                </div>
+                </div> */}
             </div>
         </div>
     );

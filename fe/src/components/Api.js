@@ -35,3 +35,10 @@ export const updateUser = () => {
 export const imageonly = () => {
     return api.get("/latest_food_image/");
 }
+
+export const allList = () => {
+    return api.get("/list_food_info/");
+}
+export const todaysumfood = () => {
+    return api.get("/today_sum_food/");
+}
