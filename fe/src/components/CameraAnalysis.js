@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
-import { result_foodAi, updateFoodinfo } from './Api';
+import { result_foodAi, imageonly } from './Api';
 import { useNavigate } from 'react-router-dom';
 
 const CameraAnalysis = () => {
@@ -25,6 +25,18 @@ const CameraAnalysis = () => {
     };
     console.log(nut?.data);
     const N = nut?.data || [];
+
+    const [img, setImg] = React.useState();
+    React.useEffect(() => {
+        getData2();
+    }, []);
+
+    const getData2 = async () => {
+        const response = await imageonly();
+        setImg(response);
+    };
+    const I = img?.data || [];
+    console.log(I);
 
     const handleRecordClick = async (e) => {
         e.preventDefault();
@@ -56,7 +68,7 @@ const CameraAnalysis = () => {
             </div>
             <form className={style.form}>
                 {N[N.length - 1] && <div className={style.screen_container}>
-                    <div><img src={"/imgs/foodsample1.png"} height="250" /></div>
+                    {I && <div><img src={`data:image;base64,${I.image}`} height="250" /></div>}
                     <div className={style.foodname}>{N[N.length - 1].food_name}</div>
                 </div>}
                 <div className={style.analysis_container}>

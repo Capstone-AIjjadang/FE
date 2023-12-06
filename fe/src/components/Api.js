@@ -32,6 +32,6 @@ export const result_ocrAi = () => {
 export const updateUser = () => {
     return api.put("/update_user/");
 }
-export const updateFoodinfo = () => {
-    return api.post("/total_food_result/");
+export const imageonly = () => {
+    return api.get("/latest_food_image/");
 }
