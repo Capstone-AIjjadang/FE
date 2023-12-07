@@ -89,8 +89,7 @@
                     <div className={style.Section2}>
                         <div className={style.title}><MdOutlineRecommend /> 추천 음식</div>
                         <div className={style.Recommend_container}>
-                            <div className={style.Rec_direction}>현재 잔여 나트륨 함량은 00g 입니다.<br />
-                                권장 칼륨은 00g 입니다.<br />
+                            <div className={style.Rec_direction}>현재 잔여 나트륨 함량은 {Math.max(Math.floor(2300 - todayData.total_food_data.Total_food_nat),0)}g 입니다.<br />
                                 추천드리는 음식은 아래와 같습니다.</div>
                             <ul className={style.Rec_foods}>
                                 <li>01. {userData && userData.length > 0 ? userData[0].name1 : "Loading..."} </li>

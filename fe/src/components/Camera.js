@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
+import React, { useState } from 'react';
 import '../css/Camera.css';
-import { useState } from 'react';
 import Webcam from "react-webcam";
 import { Link, useNavigate } from 'react-router-dom';
 import { foodAi, ocrAi } from './Api';
@@ -17,7 +16,11 @@ const Camera = () => {
     const history = useNavigate();
 
     console.log('now /state : ' + Nowstate);
-    const handleButtonClick = e => { //갤러리 버튼 클릭
+
+    // Define formData outside of captureImage
+    let formData;
+
+    const handleButtonClick = e => {
         e.preventDefault();
         console.log('갤러리 버튼 클릭');
         fileInput.current.click();
@@ -27,15 +30,14 @@ const Camera = () => {
         const selectedImage = e.target.files[0];
         if (selectedImage) {
             const imageURL = URL.createObjectURL(selectedImage);
-            setCapturedImage(imageURL); // 이미지를 capturedImage 상태에 설정
+            setCapturedImage(imageURL);
         }
     };
 
-    //webcam 사진캡쳐 부분
     const captureImage = async (e) => {
         e.preventDefault();
         const imageSrc = webcamRef.current.getScreenshot();
-
+    
         // base64 이미지를 Blob으로 변환
         const byteString = atob(imageSrc.split(',')[1]);
         const mimeString = imageSrc.split(',')[0].split(':')[1].split(';')[0];
@@ -46,47 +48,93 @@ const Camera = () => {
         }
         const blob = new Blob([ab], { type: mimeString });
         const jpegFile = new File([blob], 'image.jpg', { type: 'image/jpeg' });
-        // FormData 객체를 생성하고 Blob을 추가
-        const formData = new FormData();
+    
+        // Set formData value
+        formData = new FormData();
         formData.append('file', jpegFile);
-
-        // 이제 formData에 JPEG 형식의 이미지가 포함되어 있습니다.
-        formData.forEach((value, key) => {
-            console.log(key, value);
-        });
+    
         const imageUrl = URL.createObjectURL(blob);
         setCapturedImage(imageUrl);
-        console.log('??');
+    
         try {
-            console.log('???');
             let R;
-            // const R = foodAi(formData);
-            console.log('!!');
-            // 응답을 필요에 따라 처리합니다.
             if (Nowstate === 'text') {
                 console.log('OCR');
                 R = await ocrAi(formData);
                 history('/camera/textanalysis');
                 console.log('텍스트 결과 분석 페이지로');
-                // console.log(R.data.value);
             } else if (Nowstate === 'food') {
                 console.log('Food AI');
-                R = foodAi(formData);
-                history('/camera/analysis');
+                R = await foodAi(formData);
+    
+                // 'UNKNOWN'을 0.0으로 변환
+                const transformedData = {
+                    ...R.data,
+                    calories: parseFloat(R.data.calories) || 0.0,
+                    natural: parseFloat(R.data.natural) || 0.0,
+                    carbohydrates: parseFloat(R.data.carbohydrates) || 0.0,
+                    protein: parseFloat(R.data.protein) || 0.0,
+                    fat: parseFloat(R.data.fat) || 0.0,
+                };
+    
+                history('/camera/analysis', { foodResult: transformedData });
                 console.log('음식 결과 분석 페이지로');
             }
-
         } catch (error) {
             console.error('이미지 업로드 오류:', error);
-            // 필요에 따라 오류를 처리합니다.
         }
-
-    };
-    const resetImage = () => {
-        setCapturedImage(null);
     };
 
-    const handleToggle = (e) => {
+    const resetImage = async () => {
+        try {
+            let R;
+            if (Nowstate === 'text') {
+                console.log('OCR');
+                const imageBlob = await getImageBlobFromUrl(capturedImage);
+                formData = new FormData();
+                formData.append('file', imageBlob);
+                R = await ocrAi(formData);
+                history('/camera/textanalysis', { imageResult: R.data });
+            } else if (Nowstate === 'food') {
+                console.log('Food AI');
+                const imageBlob = await getImageBlobFromUrl(capturedImage);
+                formData = new FormData();
+                formData.append('file', imageBlob);
+                R = await foodAi(formData);
+                history('/camera/analysis', { foodResult: R.data });
+            }
+    
+            setCapturedImage(null); // 이미지 제거
+        } catch (error) {
+            console.error('이미지 업로드 오류:', error);
+        }
+    };
+    
+    // URL을 통해 이미지를 Blob으로 변환하는 함수
+    const getImageBlobFromUrl = async (url) => {
+        const response = await fetch(url);
+        const blob = await response.blob();
+        return blob;
+    };
+    
+    
+    // base64 이미지를 Blob으로 변환하는 함수
+    const getImageBlobFromBase64 = (base64) => {
+        return new Promise((resolve, reject) => {
+            // base64 이미지를 Blob으로 변환
+            const byteString = atob(base64.split(',')[1]);
+            const mimeString = base64.split(',')[0].split(':')[1].split(';')[0];
+            const ab = new ArrayBuffer(byteString.length);
+            const ia = new Uint8Array(ab);
+            for (let i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+            const blob = new Blob([ab], { type: mimeString });
+            resolve(blob);
+        });
+    };
+
+    const handleToggle = () => {
         setIsActive(!isActive);
     };
 
@@ -100,7 +148,6 @@ const Camera = () => {
                         alt='Captured'
                         className='screen'
                     />
-
                 ) : (
                     <Webcam
                         ref={webcamRef}
@@ -125,11 +172,9 @@ const Camera = () => {
                         onChange={handleImageSelect}
                         style={{ display: "none" }}
                     />
-                    <button className='btn_gallary'
-                        onClick={handleButtonClick}>
+                    <button className='btn_gallary' onClick={handleButtonClick}>
                         <img src={process.env.PUBLIC_URL + "/imgs/btn_gallary.png"} className='btn_gallary' />
                     </button>
-
                     <button type="button" className='btn_photo' onClick={capturedImage ? resetImage : captureImage} />
                     <div style={{ display: 'flex', alignItems: 'center' }}>
                         <div
@@ -139,10 +184,10 @@ const Camera = () => {
                         </div>
                         {buttonText}
                     </div>
-
                 </form>
             </div>
-        </div >
+        </div>
     );
 };
+
 export default Camera;
