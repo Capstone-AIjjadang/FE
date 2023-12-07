@@ -100,7 +100,7 @@ const Main = () => {
                 <div className={style.title}><MdOutlineToday /> 일일섭취량</div>
                 {T && <div className={style.Day_container}>
                     <div className={style.Kcal}>
-                        총 칼로리 <span>{Math.floor(T.Total_food_cal)}Kcal</span>
+                        총 칼로리 <span>{Math.floor(T.Total_food_cal)} / {Math.floor(A.recommended_cal)}Kcal</span>
                         <LinearProgress
                             variant="determinate"
                             value={Math.min(Math.floor(T.Total_food_cal / A.recommended_cal * 100), 100)}
@@ -109,7 +109,7 @@ const Main = () => {
                     </div>
                     <div className={style.sec1}>
                         <div>
-                            탄수화물 <span>{Math.floor(T.Total_food_carbs)}g</span>
+                            탄수화물 <span>{Math.floor(T.Total_food_carbs)} / {Math.floor(A.recommended_carbs)}g</span>
                             <LinearProgress
                                 variant="determinate"
                                 value={Math.min(Math.floor(T.Total_food_carbs / A.recommended_carbs * 100), 100)}
@@ -117,7 +117,7 @@ const Main = () => {
                             />
                         </div>
                         <div>
-                            지방 <span>{Math.floor(T.Total_food_fat)}g</span>
+                            지방 <span>{Math.floor(T.Total_food_fat)} / {Math.floor(A.recommended_fat)}g</span>
                             <LinearProgress
                                 variant="determinate"
                                 value={Math.min(Math.floor(T.Total_food_fat / A.recommended_fat * 100), 100)}
@@ -127,7 +127,7 @@ const Main = () => {
                     </div>
                     <div className={style.sec2}>
                         <div>
-                            단백질 <span>{Math.floor(T.Total_food_protein)}g</span>
+                            단백질 <span>{Math.floor(T.Total_food_protein)} / {Math.floor(A.recommended_protein)}g</span>
                             <LinearProgress
                                 variant="determinate"
                                 value={Math.min(Math.floor(T.Total_food_protein / A.recommended_protein * 100), 100)}
@@ -135,7 +135,7 @@ const Main = () => {
                             />
                         </div>
                         <div>
-                            나트륨 <span>{Math.floor(T.Total_food_nat)}g</span>
+                            나트륨 <span>{Math.floor(T.Total_food_nat)} / {Math.floor(A.recommended_nat)}mg</span>
                             <LinearProgress
                                 variant="determinate"
                                 value={Math.min(Math.floor(T.Total_food_nat / A.recommended_nat * 100), 100)}
