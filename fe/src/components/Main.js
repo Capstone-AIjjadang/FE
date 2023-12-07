@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import style from '../css/Main.module.css';
 import { MdOutlineCalendarToday, MdOutlineToday, MdOutlineFastfood } from "react-icons/md";
 import { LinearProgress } from '@mui/material';
-import { allList, imageonly, todaysumfood } from './Api';
+import { allList, imageonly, todaysumfood, recommendintake } from './Api';
 
 const Main = () => {
     const num = 75;
@@ -25,6 +25,7 @@ const Main = () => {
     const formattedDate = currentDate.toLocaleDateString('ko-KR', options);
     const dayOfWeek = currentDate.toLocaleDateString('ko-KR', { weekday: 'long' }); // 요일만 따로 저장
 
+    //allList
     const [list, setList] = React.useState();
     React.useEffect(() => {
         getData();
@@ -37,6 +38,7 @@ const Main = () => {
     const N = list?.data || [];
     // console.log(N);
 
+    //imageonly
     const [img, setImg] = React.useState();
     React.useEffect(() => {
         getData2();
@@ -49,6 +51,7 @@ const Main = () => {
     const I = img?.data.images || [];
     console.log(I);
 
+    //todaysumfood
     const [today, setToday] = React.useState();
     React.useEffect(() => {
         getData3();
@@ -59,6 +62,19 @@ const Main = () => {
         setToday(response);
     };
     const T = today?.data.total_food_data || [];
+
+
+    //recommendintake
+    const [intake, setIntake] = React.useState();
+    React.useEffect(() => {
+        getData4();
+    }, []);
+
+    const getData4 = async () => {
+        const response = await recommendintake();
+        setIntake(response);
+    };
+    const A = intake?.data.response_data || [];
     // console.log(T);
 
 
@@ -85,28 +101,49 @@ const Main = () => {
                 {T && <div className={style.Day_container}>
                     <div className={style.Kcal}>
                         총 칼로리 <span>{Math.floor(T.Total_food_cal)}Kcal</span>
-                        <LinearProgress variant="determinate" value={T.Total_food_cal} style={{ width: '300px', height: '50%', borderRadius: '10px' }} />
+                        <LinearProgress
+                            variant="determinate"
+                            value={Math.min(Math.floor(T.Total_food_cal / A.recommended_cal * 100), 100)}
+                            style={{ width: '300px', height: '50%', borderRadius: '10px' }}
+                        />
                     </div>
                     <div className={style.sec1}>
                         <div>
                             탄수화물 <span>{Math.floor(T.Total_food_carbs)}g</span>
-                            <LinearProgress variant="determinate" value={T.Total_food_carbs} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
+                            <LinearProgress
+                                variant="determinate"
+                                value={Math.min(Math.floor(T.Total_food_carbs / A.recommended_carbs * 100), 100)}
+                                style={{ width: '200px', height: '50%', borderRadius: '10px' }}
+                            />
                         </div>
                         <div>
                             지방 <span>{Math.floor(T.Total_food_fat)}g</span>
-                            <LinearProgress variant="determinate" value={T.Total_food_fat} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
+                            <LinearProgress
+                                variant="determinate"
+                                value={Math.min(Math.floor(T.Total_food_fat / A.recommended_fat * 100), 100)}
+                                style={{ width: '200px', height: '50%', borderRadius: '10px' }}
+                            />
                         </div>
                     </div>
                     <div className={style.sec2}>
                         <div>
                             단백질 <span>{Math.floor(T.Total_food_protein)}g</span>
-                            <LinearProgress variant="determinate" value={T.Total_food_protein} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
+                            <LinearProgress
+                                variant="determinate"
+                                value={Math.min(Math.floor(T.Total_food_protein / A.recommended_protein * 100), 100)}
+                                style={{ width: '200px', height: '50%', borderRadius: '10px' }}
+                            />
                         </div>
                         <div>
                             나트륨 <span>{Math.floor(T.Total_food_nat)}g</span>
-                            <LinearProgress variant="determinate" value={T.Total_food_nat} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
+                            <LinearProgress
+                                variant="determinate"
+                                value={Math.min(Math.floor(T.Total_food_nat / A.recommended_nat * 100), 100)}
+                                style={{ width: '200px', height: '50%', borderRadius: '10px' }}
+                            />
                         </div>
                     </div>
+
                 </div>}
             </div>
             <div className={style.Section3}>

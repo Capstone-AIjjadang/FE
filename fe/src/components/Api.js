@@ -42,3 +42,7 @@ export const allList = () => {
 export const todaysumfood = () => {
     return api.get("/today_sum_food/");
 }
+
+export const recommendintake = () => {
+    return api.get("/recommended_intake/");
+}
