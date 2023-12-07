@@ -84,26 +84,26 @@ const Main = () => {
                 <div className={style.title}><MdOutlineToday /> 일일섭취량</div>
                 {T && <div className={style.Day_container}>
                     <div className={style.Kcal}>
-                        총 칼로리 <span>{T.Total_food_cal}Kcal</span>
+                        총 칼로리 <span>{Math.floor(T.Total_food_cal)}Kcal</span>
                         <LinearProgress variant="determinate" value={T.Total_food_cal} style={{ width: '300px', height: '50%', borderRadius: '10px' }} />
                     </div>
                     <div className={style.sec1}>
                         <div>
-                            탄수화물 <span>{T.Total_food_carbs}g</span>
+                            탄수화물 <span>{Math.floor(T.Total_food_carbs)}g</span>
                             <LinearProgress variant="determinate" value={T.Total_food_carbs} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                         <div>
-                            지방 <span>{T.Total_food_fat}g</span>
+                            지방 <span>{Math.floor(T.Total_food_fat)}g</span>
                             <LinearProgress variant="determinate" value={T.Total_food_fat} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                     </div>
                     <div className={style.sec2}>
                         <div>
-                            단백질 <span>{T.Total_food_protein}g</span>
+                            단백질 <span>{Math.floor(T.Total_food_protein)}g</span>
                             <LinearProgress variant="determinate" value={T.Total_food_protein} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                         <div>
-                            나트륨 <span>{T.Total_food_nat}g</span>
+                            나트륨 <span>{Math.floor(T.Total_food_nat)}g</span>
                             <LinearProgress variant="determinate" value={T.Total_food_nat} style={{ width: '200px', height: '50%', borderRadius: '10px' }} />
                         </div>
                     </div>
