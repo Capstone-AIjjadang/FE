@@ -34,7 +34,7 @@ const TextAnalysis = () => {
             postData.append('name', input_foodname); // 문자열로 변환하여 추가
 
             // Axios를 사용하여 POST 요청
-            const response = await axios.post('http://localhost:8000/total_food_result/', postData);
+            const response = await axios.post('http://localhost:8000/total_text_result/', postData);
 
             // 서버 응답 처리
             console.log('서버 응답:', response.data);

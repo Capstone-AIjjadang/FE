@@ -4,17 +4,14 @@ import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
 import { result_foodAi, imageonly } from './Api';
 import { useNavigate } from 'react-router-dom';
-// import loading from './loading';
+import Loading from './Loading';
 
 const CameraAnalysis = () => {
+    const [loading, setLoading] = React.useState(true);
     const [rating, setRating] = React.useState(0);
     const [amountEaten, setAmountEaten] = React.useState(0.5); // 초기값 설정
     const history = useNavigate();
 
-
-    const handleRatingChange = (value) => {
-        setRating(value);
-    };
 
     const [nut, setNutri] = React.useState();
     React.useEffect(() => {
@@ -67,7 +64,22 @@ const CameraAnalysis = () => {
             console.log('에러 응답 데이터:', error.response.data);
         }
     };
+    useEffect(() => {
+        // 5초 동안의 지연을 시뮬레이션합니다.
+        const timeoutId = setTimeout(() => {
+            setLoading(false);
+        }, 5000);
 
+        // 메모리 누수를 방지하기 위해 timeout을 정리합니다.
+        return () => clearTimeout(timeoutId);
+    }, []); // 컴포넌트가 마운트될 때 한 번만 실행됩니다.
+
+    if (loading) {
+        return <Loading />; // 로딩 중일 때 Loading 컴포넌트를 표시합니다.
+    }
+    const handleRatingChange = (value) => {
+        setRating(value);
+    };
     return (
         <div className={style.container}>
             <div className={style.header}>
