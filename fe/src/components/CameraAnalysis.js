@@ -4,11 +4,13 @@ import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
 import { result_foodAi, imageonly } from './Api';
 import { useNavigate } from 'react-router-dom';
+// import loading from './loading';
 
 const CameraAnalysis = () => {
     const [rating, setRating] = React.useState(0);
     const [amountEaten, setAmountEaten] = React.useState(0.5); // 초기값 설정
     const history = useNavigate();
+
 
     const handleRatingChange = (value) => {
         setRating(value);
@@ -36,7 +38,12 @@ const CameraAnalysis = () => {
         setImg(response);
     };
     const I = img?.data || [];
-    console.log(I);
+    // const realImg = I.images[I.images.length - 1];
+    console.log('I:', I);
+    console.log('I.images:', I.images);
+    // console.log('I.images.length:', I.images ? I.images.length : 'undefined');
+    // const len = I.images.length;
+    // console.log(len);
 
     const handleRecordClick = async (e) => {
         e.preventDefault();
@@ -68,7 +75,7 @@ const CameraAnalysis = () => {
             </div>
             <form className={style.form}>
                 {N[N.length - 1] && <div className={style.screen_container}>
-                    {I && <div><img src={`data:image;base64,${I.image}`} height="250" /></div>}
+                    {I.images && I.images[I.images.length - 1] && <img src={`data:image;base64,${I.images[I.images.length - 1].image}`} height='300px' />}
                     <div className={style.foodname}>{N[N.length - 1].food_name}</div>
                 </div>}
                 <div className={style.analysis_container}>
@@ -84,7 +91,7 @@ const CameraAnalysis = () => {
                         </div>
                         <div className={style.sec2}>
                             <li>나트륨<span>{N[N.length - 1].food_nat}mg</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].food_nat} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                                <LinearProgress variant="determinate" value={N[N.length - 1].food_nat / 10} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                             <br /><br /><br />
                             <li>단백질<span>{N[N.length - 1].food_protein}g</span>

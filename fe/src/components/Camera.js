@@ -37,7 +37,7 @@ const Camera = () => {
     const captureImage = async (e) => {
         e.preventDefault();
         const imageSrc = webcamRef.current.getScreenshot();
-    
+
         // base64 이미지를 Blob으로 변환
         const byteString = atob(imageSrc.split(',')[1]);
         const mimeString = imageSrc.split(',')[0].split(':')[1].split(';')[0];
@@ -48,14 +48,14 @@ const Camera = () => {
         }
         const blob = new Blob([ab], { type: mimeString });
         const jpegFile = new File([blob], 'image.jpg', { type: 'image/jpeg' });
-    
+
         // Set formData value
         formData = new FormData();
         formData.append('file', jpegFile);
-    
+
         const imageUrl = URL.createObjectURL(blob);
         setCapturedImage(imageUrl);
-    
+
         try {
             let R;
             if (Nowstate === 'text') {
@@ -66,18 +66,10 @@ const Camera = () => {
             } else if (Nowstate === 'food') {
                 console.log('Food AI');
                 R = await foodAi(formData);
-    
-                // 'UNKNOWN'을 0.0으로 변환
-                const transformedData = {
-                    ...R.data,
-                    calories: parseFloat(R.data.calories) || 0.0,
-                    natural: parseFloat(R.data.natural) || 0.0,
-                    carbohydrates: parseFloat(R.data.carbohydrates) || 0.0,
-                    protein: parseFloat(R.data.protein) || 0.0,
-                    fat: parseFloat(R.data.fat) || 0.0,
-                };
-    
-                history('/camera/analysis', { foodResult: transformedData });
+
+
+
+                history('/camera/analysis');
                 console.log('음식 결과 분석 페이지로');
             }
         } catch (error) {
@@ -103,21 +95,21 @@ const Camera = () => {
                 R = await foodAi(formData);
                 history('/camera/analysis', { foodResult: R.data });
             }
-    
+
             setCapturedImage(null); // 이미지 제거
         } catch (error) {
             console.error('이미지 업로드 오류:', error);
         }
     };
-    
+
     // URL을 통해 이미지를 Blob으로 변환하는 함수
     const getImageBlobFromUrl = async (url) => {
         const response = await fetch(url);
         const blob = await response.blob();
         return blob;
     };
-    
-    
+
+
     // base64 이미지를 Blob으로 변환하는 함수
     const getImageBlobFromBase64 = (base64) => {
         return new Promise((resolve, reject) => {
