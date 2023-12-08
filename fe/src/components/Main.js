@@ -150,7 +150,7 @@ const Main = () => {
                 <div className={style.title}><MdOutlineFastfood /> 식사 기록</div>
                 {N && N.map((meal, index) => (
                     <div key={index} className={style.Food_container}>
-                        {I[index] && <img src={`data:image;base64,${I[index].image}`} height='auto' />}
+                        {I[index] && <img src={`data:image;base64,${I[index].image}`} width='220px' height='200px' style={{ borderRadius: '20px 0 0 20px' }} />}
                         <ul className={style.todaymeal_container}>
                             <div className={style.foodname} >{meal.Total_food_name} <span>{meal.Total_food_cal}Kcal</span></div>
                             <div className={style.sec1}>
@@ -163,20 +163,6 @@ const Main = () => {
                             </div>
                         </ul>
                     </div>))}
-                {/* <div className={style.Food_container}>
-                    <img src={"/imgs/foodsample2.png"} width="200" height="200" style={{ borderRadius: '15px' }} />
-                    <ul className={style.todaymeal_container}>
-                        <div className={style.foodname} >음식이름 <span>00Kcal</span></div>
-                        <div className={style.sec1}>
-                            <li>탄수화물 <span>00g</span></li>
-                            <li>지방 <span>00g</span></li>
-                        </div>
-                        <div className={style.sec2}>
-                            <li>단백질 <span>00g</span></li>
-                            <li>칼슘 <span>00g</span></li>
-                        </div>
-                    </ul>
-                </div> */}
             </div>
         </div>
     );
