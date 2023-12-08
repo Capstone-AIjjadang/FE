@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import style from "../css/Analysis.module.css";
 import { LinearProgress } from '@mui/material';
-import { result_foodAi, imageonly } from './Api';
+import { result_foodAi, imageonly, todaysumfood, recommendintake } from './Api';
 import { useNavigate } from 'react-router-dom';
 import Loading from './Loading';
 
@@ -41,6 +41,30 @@ const CameraAnalysis = () => {
     // console.log('I.images.length:', I.images ? I.images.length : 'undefined');
     // const len = I.images.length;
     // console.log(len);
+
+    //todaysumfood
+    const [today, setToday] = React.useState();
+    React.useEffect(() => {
+        getData3();
+    }, []);
+
+    const getData3 = async () => {
+        const response = await todaysumfood();
+        setToday(response);
+    };
+    const T = today?.data.total_food_data || [];
+
+    //recommendintake
+    const [intake, setIntake] = React.useState();
+    React.useEffect(() => {
+        getData4();
+    }, []);
+
+    const getData4 = async () => {
+        const response = await recommendintake();
+        setIntake(response);
+    };
+    const A = intake?.data.response_data || [];
 
     const handleRecordClick = async (e) => {
         e.preventDefault();
@@ -92,27 +116,82 @@ const CameraAnalysis = () => {
                 </div>}
                 <div className={style.analysis_container}>
                     {N[N.length - 1] && <div className={style.analysis}>
-                        <div className={style.sec1}>
-                            <li>총 칼로리 <span>{N[N.length - 1].food_cal}Kcal</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].food_cal / 10} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                        {/* <div className={style.sec1}>
+                            <li>
+                                총 칼로리 <span>{Math.floor(N[N.length - 1].food_cal * 10) / 10} / {Math.floor((A.recommended_cal - T.Total_food_cal) * 10) / 10} Kcal</span>
+                                {console.log((Math.floor(N[N.length - 1].food_cal * 10) / 10) / (Math.floor((A.recommended_cal - T.Total_food_cal) * 10) / 10) * 100)}
+                                <LinearProgress
+                                    variant="determinate"
+                                    value={(Math.floor(N[N.length - 1].food_cal * 10) / 10) / (Math.floor((A.recommended_cal - T.Total_food_cal) * 10) / 10) * 100}
+                                    style={{ width: '100px', height: '14px', borderRadius: '10px' }}
+                                />
                             </li>
                             <br /><br /><br />
-                            <li>탄수화물<span>{N[N.length - 1].food_carbs}g</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].food_carbs} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>탄수화물<span>{Math.floor(N[N.length - 1].food_carbs * 10) / 10} / {Math.floor((A.recommended_carbs - T.Total_food_carbs) * 10) / 10}g</span>
+                                <LinearProgress variant="determinate" value={(Math.floor(N[N.length - 1].food_carbs * 10) / 10) / (Math.floor((A.recommended_carbs - T.Total_food_carbs) * 10) / 10) * 100} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
                         <div className={style.sec2}>
-                            <li>나트륨<span>{N[N.length - 1].food_nat}mg</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].food_nat / 10} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>나트륨<span>{Math.floor(N[N.length - 1].food_nat * 10) / 10} / {Math.floor((A.recommended_nat - T.Total_food_nat) * 10) / 10}mg</span>
+                                <LinearProgress variant="determinate" value={(Math.floor(N[N.length - 1].food_nat * 10) / 10) / (Math.floor((A.recommended_nat - T.Total_food_nat) * 10) / 10) * 100} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                             <br /><br /><br />
-                            <li>단백질<span>{N[N.length - 1].food_protein}g</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].food_protein} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>단백질<span>{Math.floor(N[N.length - 1].food_protein * 10) / 10} / {Math.floor((A.recommended_protein - T.Total_food_protein) * 10) / 10}g</span>
+                                <LinearProgress variant="determinate" value={(Math.floor(N[N.length - 1].food_protein * 10) / 10) / (Math.floor((A.recommended_protein - T.Total_food_protein) * 10) / 10) * 100} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
                             </li>
                         </div>
                         <div className={style.sec3}>
-                            <li>지방<span>{N[N.length - 1].food_fat}g</span>
-                                <LinearProgress variant="determinate" value={N[N.length - 1].food_fat} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            <li>지방<span>{Math.floor(N[N.length - 1].food_fat * 10) / 10} / {Math.floor((A.recommended_fat - T.Total_food_fat) * 10) / 10}g</span>
+                                <LinearProgress variant="determinate" value={(Math.floor(N[N.length - 1].food_fat * 10) / 10) / (Math.floor((A.recommended_fat - T.Total_food_fat) * 10) / 10) * 100} style={{ width: '100px', height: '14px', borderRadius: '10px' }} />
+                            </li>
+                        </div> */}
+
+                        <div className={style.sec1}>
+                            <li>
+                                총 칼로리 <span>{Math.floor(N[N.length - 1].food_cal * 10) / 10} Kcal</span>
+                                <LinearProgress
+                                    variant="determinate"
+                                    value={(Math.floor(N[N.length - 1].food_cal * 10) / 10) / (Math.floor((A.recommended_cal - T.Total_food_cal) * 10) / 10) * 100 < 0 ? 100 : (Math.floor(N[N.length - 1].food_cal * 10) / 10) / (Math.floor((A.recommended_cal - T.Total_food_cal) * 10) / 10) * 100}
+                                    style={{ width: '100px', height: '14px', borderRadius: '10px' }}
+                                />
+                            </li>
+                            <br /><br /><br />
+                            <li>
+                                탄수화물<span>{Math.floor(N[N.length - 1].food_carbs * 10) / 10} g</span>
+                                <LinearProgress
+                                    variant="determinate"
+                                    value={(Math.floor(N[N.length - 1].food_carbs * 10) / 10) / (Math.floor((A.recommended_carbs - T.Total_food_carbs) * 10) / 10) * 100 < 0 ? 100 : (Math.floor(N[N.length - 1].food_carbs * 10) / 10) / (Math.floor((A.recommended_carbs - T.Total_food_carbs) * 10) / 10) * 100}
+                                    style={{ width: '100px', height: '14px', borderRadius: '10px' }}
+                                />
+                            </li>
+                        </div>
+                        <div className={style.sec2}>
+                            <li>
+                                나트륨<span>{Math.floor(N[N.length - 1].food_nat * 10) / 10} mg</span>
+                                <LinearProgress
+                                    variant="determinate"
+                                    value={(Math.floor(N[N.length - 1].food_nat * 10) / 10) / (Math.floor((A.recommended_nat - T.Total_food_nat) * 10) / 10) * 100 < 0 ? 100 : (Math.floor(N[N.length - 1].food_nat * 10) / 10) / (Math.floor((A.recommended_nat - T.Total_food_nat) * 10) / 10) * 100}
+                                    style={{ width: '100px', height: '14px', borderRadius: '10px' }}
+                                />
+                            </li>
+                            <br /><br /><br />
+                            <li>
+                                단백질<span>{Math.floor(N[N.length - 1].food_protein * 10) / 10} g</span>
+                                <LinearProgress
+                                    variant="determinate"
+                                    value={(Math.floor(N[N.length - 1].food_protein * 10) / 10) / (Math.floor((A.recommended_protein - T.Total_food_protein) * 10) / 10) * 100 < 0 ? 100 : (Math.floor(N[N.length - 1].food_protein * 10) / 10) / (Math.floor((A.recommended_protein - T.Total_food_protein) * 10) / 10) * 100}
+                                    style={{ width: '100px', height: '14px', borderRadius: '10px' }}
+                                />
+                            </li>
+                        </div>
+                        <div className={style.sec3}>
+                            <li>
+                                지방<span>{Math.floor(N[N.length - 1].food_fat * 10) / 10} g</span>
+                                <LinearProgress
+                                    variant="determinate"
+                                    value={(Math.floor(N[N.length - 1].food_fat * 10) / 10) / (Math.floor((A.recommended_fat - T.Total_food_fat) * 10) / 10) * 100 < 0 ? 100 : (Math.floor(N[N.length - 1].food_fat * 10) / 10) / (Math.floor((A.recommended_fat - T.Total_food_fat) * 10) / 10) * 100}
+                                    style={{ width: '100px', height: '14px', borderRadius: '10px' }}
+                                />
                             </li>
                         </div>
                     </div>}
